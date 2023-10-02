@@ -1,0 +1,158 @@
+span {
+    color: var(--color-danger);
+}
+
+/* Estilo del encabezado */
+.header {
+    padding: 1rem;
+    background-color: var(--color-containers);
+    height: 7rem;
+}
+
+/* Estilo del contenedor del logo */
+.container-logo {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo del logo */
+.logo {
+    width: 5rem;
+    height: 5rem;
+}
+
+/* Estilo del texto del logo */
+.text-logo {
+    margin-left: 1.5rem;
+    font-size: 1.6rem;
+    font-family: 'kavoon', cursive;
+    color: var(--primary-color);
+}
+
+/* Estilo general de la página principal */
+.main-forms {
+    margin: 0;
+}
+
+/* Estilo del contenedor principal */
+.main-forms .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+/* Estilo del fondo */
+.main-forms .container .back {
+    width: 100%;
+    height: 16rem;
+    background-color: var(--color-containers);
+}
+
+/* Estilo del contenedor del formulario */
+.main-forms .container .container-form {
+    width: 45rem;
+    min-height: 40rem;
+    position: absolute;
+    top: 42%;
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    padding: 1.2rem;
+    box-shadow: 0 1rem 1rem 1rem rgba(0, 0, 0, 0.08);
+}
+
+/* Estilo del contenedor del título */
+.main-forms .container-form .container-title {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Estilo del título del formulario */
+.main-forms .container-form .container-title .title-form {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    font-weight: 400;
+}
+
+/* Estilo del formulario de inicio de sesión */
+.main-forms .container-form .form-login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Estilo para varios elementos dentro del formulario */
+.main-forms .container-form .container-title,
+.main-forms .container-form .form-login .input,
+.main-forms .container-form .form-login .button-login,
+.main-forms .container-form .form-login .text-password {
+    margin-bottom: 2rem;
+}
+
+/* Estilo de los inputs */
+.main-forms .container-form .form-login .input {
+    padding: 1rem 0.8rem;
+    outline: none;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    font-size: var(--font-size);
+}
+
+/* Estilo de las etiquetas de los inputs */
+.main-forms .container-form .form-login label {
+    font-size: var(--font-size);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
+
+/* Estilo del botón de inicio de sesión */
+.main-forms .container-form .form-login .button-login {
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--primary-color);
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+/* Estilo del texto de la contraseña olvidada */
+.main-forms .container-form .form-login .text-password {
+    margin: 0 auto;
+    font-size: 1.6rem;
+}
+
+/* Estilo del contenedor de redirección */
+.main-forms .container-form .contaiter-redirect {
+    margin-top: 15%;
+    font-size: 1.6rem;
+}
+
+/* Media query para pantallas de hasta 768px */
+@media screen and (max-width: 768px) {
+    body {
+        background-color: var(--color-containers);
+    }
+    /* Ocultar el fondo */
+    .main-forms .container .back {
+        display: none;
+    }
+    /* Adaptar el ancho del formulario y eliminar el borde redondeado */
+    .main-forms .container .container-form {
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        background-color: var(--color-containers);
+    }
+}
+
+/* Media query para pantallas de hasta 420px */
+@media screen and (max-width: 420px) {
+    /* Ajustar el tamaño de fuente del texto de contraseña olvidada y redirección */
+    .main-forms .container-form .form-login .text-password,
+    .main-forms .container-form .contaiter-redirect {
+        font-size: 1.4rem;
+    }
+}

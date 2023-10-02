@@ -1,0 +1,59 @@
+.main .section-service {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(24rem, 100%), 1fr));
+    gap: 2rem;
+}
+
+.main .section-service .article-service {
+    min-height: 30rem;
+    background-color: var(--color-containers);
+    border-radius: 2rem;
+    transition: all .2s ease;
+}
+
+.main .section-service .article-service:hover {
+    transform: scale(0.5rem);
+    box-shadow: 0 1rem 1rem 1rem rgba(179, 179, 179, 0.2);
+}
+
+.main .section-service .article-service .container-img-service img {
+    width: 100%;
+    object-fit: cover;
+    background-size: cover;
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+}
+
+.main .section-service .article-service .container-content-service {
+    text-align: center;
+    margin: 1rem;
+}
+
+.main .section-service .container-content-service h4 {
+    font-size: var(--font-size);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.main .section-service .article-service .container-content-service p {
+    font-size: var(--font-size-menu);
+    margin-bottom: 1rem;
+}
+
+.main .section-service .article-service .button-detail-service,
+.main .section-service .article-service .button-appoint {
+    padding: 0.5rem;
+    width: 10rem;
+    background-color: var(--primary-color);
+    border-radius: 1rem;
+    color: var(--color-white);
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    font-size: var(--font-size-menu);
+    font-weight: 600;
+}
+
+.main .section-service .article-service .button-detail-service {
+    background-color: var(--color-border);
+}
