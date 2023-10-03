@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glamour Style - Register</title>
-    <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="../styles/form.register.css">
+    <link rel="stylesheet" href="../../public/styles/main.css">
+    <link rel="stylesheet" href="../../public/styles/form.register.css">
 </head>
 
 <body>
     <header class="header">
         <div class="container-logo">
-            <img src="../assets/logo.png" alt="logo" class="logo">
+            <img src="../../public/assets/logo.png" alt="logo" class="logo">
             <h4 class="text-logo">Glamour Styles</h4>
         </div>
     </header>
@@ -77,7 +77,7 @@
 
                 </form>
                 <div class="contaiter-redirect">
-                    <p>¿Ya tienes cuenta? <a href="../index.php">Iniciar Sesión</a></p>
+                    <p>¿Ya tienes cuenta? <a href="../../index.php">Iniciar Sesión</a></p>
                 </div>
             </div>
         </div>

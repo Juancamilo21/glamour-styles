@@ -13,10 +13,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glamour Styles - Appointments</title>
-    <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="../styles/header.css">
-    <link rel="stylesheet" href="../styles/appointment.css">
-    <script defer src="../js/main.js"></script>
+    <link rel="stylesheet" href="../../public/styles/main.css">
+    <link rel="stylesheet" href="../../public/styles/header.css">
+    <link rel="stylesheet" href="../../public/styles/appointment.css">
+    <script defer src="../../public/js/main.js"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 
     <header class="header">
         <a href="./customer.home.php" class="link-logo">
-            <img src="../assets/logo.png" alt="Logo" class="logo">
+            <img src="../../public/assets/logo.png" alt="Logo" class="logo">
             <h4 class="text-logo">Glamour Styles</h4>
         </a>
         <nav class="navbar">
@@ -41,7 +41,7 @@
                 <li>
                     <a href="#">
                         <article class="card-content">
-                            <img class="profile-photo" src="../assets/hermosa-foto.jpg" alt="profile-photo">
+                            <img class="profile-photo" src="../../public/assets/hermosa-foto.jpg" alt="profile-photo">
                             <p><?php echo $row["names"]?> +</p>
                         </article>
                     </a>
@@ -74,7 +74,7 @@
         <section class="section-appoint">
             <article class="article-info-appoint">
                 <div class="container-info">
-                    <img src="../assets/pestañas.jpg" alt="photo">
+                    <img src="../../public/assets/pestañas.jpg" alt="photo">
                     <div class="info-appoint">
                         <h4>Definición de pestañas</h4>
                         <div class="box-buttons">
@@ -89,7 +89,7 @@
 
             <article class="article-info-appoint">
                 <div class="container-info">
-                    <img src="../assets/pestañas.jpg" alt="photo">
+                    <img src="../../public/assets/pestañas.jpg" alt="photo">
                     <div class="info-appoint">
                         <h4>Definición de pestañas</h4>
                         <div class="box-buttons">

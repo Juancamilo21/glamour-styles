@@ -1,4 +1,4 @@
-<?php include("controllers/user.controller.php"); ?>
+<?php include_once("controllers/user.controller.php"); ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -7,14 +7,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glamour Style - Login</title>
-    <link rel="stylesheet" href="views/styles/main.css">
-    <link rel="stylesheet" href="views/styles/form.login.css">
+    <link rel="stylesheet" href="public/styles/main.css">
+    <link rel="stylesheet" href="public/styles/form.login.css">
 </head>
 
 <body>
     <header class="header">
         <div class="container-logo">
-            <img src="assets/logo.png" alt="logo" class="logo">
+            <img src="public/assets/logo.png" alt="logo" class="logo">
             <h4 class="text-logo">Glamour Styles</h4>
         </div>
     </header>
@@ -47,7 +47,7 @@
                 </form>
 
                 <div class="contaiter-redirect">
-                    <p>¿No tienes cuenta? <a href="customer/customer.register.php">Registrarse</a></p>
+                    <p>¿No tienes cuenta? <a href="views/customer/customer.register.php">Registrarse</a></p>
                 </div>
             </div>
         </div>

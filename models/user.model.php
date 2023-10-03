@@ -144,7 +144,7 @@
         public function headerSecurity() {
             session_start();
             if (!isset($_SESSION["email"])) {
-                header("location: ../index.php");
+                header("location: ../../index.php");
             }
         }
 

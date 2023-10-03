@@ -13,10 +13,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glamour Styles - Bookings</title>
-    <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="../styles/header.css">
-    <link rel="stylesheet" href="../styles/tables.css">
-    <script defer src="../js/main.js"></script>
+    <link rel="stylesheet" href="../../public/styles/main.css">
+    <link rel="stylesheet" href="../../public/styles/header.css">
+    <link rel="stylesheet" href="../../public/styles/tables.css">
+    <script defer src="../../public/js/main.js"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 
     <header class="header">
         <a href="./customer.home.php" class="link-logo">
-            <img src="../assets/logo.png" alt="Logo" class="logo">
+            <img src="../../public/assets/logo.png" alt="Logo" class="logo">
             <h4 class="text-logo">Glamour Styles</h4>
         </a>
         <nav class="navbar">
@@ -41,7 +41,7 @@
                 <li>
                     <a href="#">
                         <article class="card-content">
-                            <img class="profile-photo" src="../assets/hermosa-foto.jpg" alt="profile-photo">
+                            <img class="profile-photo" src="../../public/assets/hermosa-foto.jpg" alt="profile-photo">
                             <p><?php echo $row["names"]?> +</p>
                         </article>
                     </a>
@@ -51,7 +51,7 @@
                                 <i class="bi bi-person"></i> Perfil
                             </div>
                         </a>
-                        <a href=".../../controllers/logOut.php">
+                        <a href="../../controllers/logOut.php">
                             <div class="item-menu">
                                 <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
                             </div>
