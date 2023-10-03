@@ -38,3 +38,9 @@
     font-weight: 600;
     background-color: var(--color-secondary);
 }
+
+@media screen and (max-width: 400px) {
+    .main .section-profile .card-info h4 {
+        font-size: var(--font-size);
+    }
+}

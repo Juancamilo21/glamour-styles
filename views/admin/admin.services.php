@@ -1,7 +1,9 @@
-<?php include(__DIR__ . "/../login/login.users.php");
+<?php include(__DIR__ . "/../../controllers/admin.controller.php");
 
-    $login = new LoginUsers();
-    $login->headerSecurity();
+    $adminController = new AdminController();
+    $adminController->headerSecurity();
+    $row = $adminController->getByIdAdmin();
+
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glamour Styles - Stylists</title>
+    <title>Glamour Styles - Home</title>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../styles/tables.css">
@@ -21,17 +23,17 @@
 
 
     <header class="header">
-        <a href="./admin.service.php" class="link-logo">
+        <a href="admin.services.php" class="link-logo">
             <img src="../assets/logo.png" alt="Logo" class="logo">
             <h4 class="text-logo">Glamour Styles</h4>
         </a>
         <nav class="navbar">
             <ul class="menu">
                 <li class="current-item-page">
-                    <a href="admin.services.php">Inicio</a>
+                    <a href="admin.services.php" class="current-page">Inicio</a>
                 </li>
                 <li>
-                    <a href="admin.stylist.php" class="current-page">Estilistas</a>
+                    <a href="admin.stylist.php">Estilistas</a>
                 </li>
                 <li>
                     <a href="admin.customers.php">Cientes</a>
@@ -43,7 +45,7 @@
                     <a href="#">
                         <article class="card-content">
                             <img class="profile-photo" src="../assets/hermosa-foto.jpg" alt="profile-photo">
-                            <p>Sofía Rodríguez +</p>
+                            <p><?php echo $row["names"] ?> +</p>
                         </article>
                     </a>
                     <div class="dropdown">
@@ -52,7 +54,7 @@
                                 <i class="bi bi-person"></i> Perfil
                             </div>
                         </a>
-                        <a href="../login/logOut.php">
+                        <a href="../../controllers/logOut.php">
                             <div class="item-menu">
                                 <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
                             </div>
@@ -86,7 +88,7 @@
                     <tbody>
                         <tr>
                             <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet consectetur</td>
+                            <td>Lorem ipsum dolor sit amet</td>
                             <td>$ 30.000</td>
                             <td>
                                 <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
@@ -96,7 +98,7 @@
 
                         <tr>
                             <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet consectetur</td>
+                            <td>Lorem ipsum dolor sit amet</td>
                             <td>$ 30.000</td>
                             <td>
                                 <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
@@ -106,7 +108,7 @@
 
                         <tr>
                             <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet consectetur</td>
+                            <td>Lorem ipsum dolor sit amet</td>
                             <td>$ 30.000</td>
                             <td>
                                 <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
@@ -116,7 +118,7 @@
 
                         <tr>
                             <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet consectetur</td>
+                            <td>Lorem ipsum dolor sit amet</td>
                             <td>$ 30.000</td>
                             <td>
                                 <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>

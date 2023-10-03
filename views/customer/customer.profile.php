@@ -1,11 +1,9 @@
-<?php include_once(__DIR__ . "/../login/login.users.php");
-
-    $login = new LoginUsers();
-    $login->headerSecurity();
+<?php include_once(__DIR__ . "/../../controllers/customer.controller.php");
     
-    include_once(__DIR__ . "/../models/customer.model.php");
-    $customerModel = new CustomerModel();
-    $row = $customerModel->getAll();
+    $customerController = new CustomerController();
+    $customerController->headerSecurity();
+
+    $row = $customerController->getByIdCustomer();
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +51,7 @@
                                 <i class="bi bi-person"></i> Perfil
                             </div>
                         </a>
-                        <a href="../login/logOut.php">
+                        <a href="../../controllers/logOut.php">
                             <div class="item-menu">
                                 <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
                             </div>

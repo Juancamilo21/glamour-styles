@@ -1,7 +1,9 @@
-<?php include(__DIR__ . "/../login/login.users.php");
+<?php include_once(__DIR__ . "/../../controllers/customer.controller.php");
+    
+    $customerController = new CustomerController();
+    $customerController->headerSecurity();
 
-    $login = new LoginUsers();
-    $login->headerSecurity();
+    $row = $customerController->getByIdCustomer();
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glamour Styles - Administradores</title>
+    <title>Glamour Styles - Bookings</title>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../styles/tables.css">
@@ -21,38 +23,35 @@
 
 
     <header class="header">
-        <a href="./admin.service.php" class="link-logo">
+        <a href="./customer.home.php" class="link-logo">
             <img src="../assets/logo.png" alt="Logo" class="logo">
             <h4 class="text-logo">Glamour Styles</h4>
         </a>
         <nav class="navbar">
             <ul class="menu">
+                <li>
+                    <a href="customer.home.php">Inicio</a>
+                </li>
+                <li>
+                    <a href="customer.appointments.php">Citas</a>
+                </li>
                 <li class="current-item-page">
-                    <a href="admin.services.php">Inicio</a>
-                </li>
-                <li>
-                    <a href="admin.stylist.php">Estilistas</a>
-                </li>
-                <li>
-                    <a href="admin.customers.php">Cientes</a>
-                </li>
-                <li>
-                    <a href="admin.admin.php" class="current-page">Administradores</a>
+                    <a href="customer.bookings.php" class="current-page">Reservas</a>
                 </li>
                 <li>
                     <a href="#">
                         <article class="card-content">
                             <img class="profile-photo" src="../assets/hermosa-foto.jpg" alt="profile-photo">
-                            <p>Sofía Rodríguez +</p>
+                            <p><?php echo $row["names"]?> +</p>
                         </article>
                     </a>
                     <div class="dropdown">
-                        <a href="admin.profile.php">
+                        <a href="./customer.profile.php">
                             <div class="item-menu">
                                 <i class="bi bi-person"></i> Perfil
                             </div>
                         </a>
-                        <a href="../login/logOut.php">
+                        <a href=".../../controllers/logOut.php">
                             <div class="item-menu">
                                 <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
                             </div>
@@ -71,14 +70,14 @@
         <section class="section-table">
             <div class="container-table">
                 <div class="box-info-tabla">
-                    <h4>Servicios</h4>
+                    <h4>Citas Reservadas</h4>
                 </div>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Precio</th>
+                            <th>Servicio</th>
+                            <th>Fecha</th>
+                            <th>Horario</th>
                             <th>Eventos</th>
                         </tr>
                     </thead>
@@ -86,8 +85,8 @@
                     <tbody>
                         <tr>
                             <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet consectetur</td>
-                            <td>$ 30.000</td>
+                            <td>2023-09-28</td>
+                            <td>09:30:00 hasta 18:00:00</td>
                             <td>
                                 <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
                                 <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
@@ -96,8 +95,8 @@
 
                         <tr>
                             <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet consectetur</td>
-                            <td>$ 30.000</td>
+                            <td>2023-09-28</td>
+                            <td>09:30:00 hasta 18:00:00</td>
                             <td>
                                 <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
                                 <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
@@ -106,8 +105,8 @@
 
                         <tr>
                             <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet consectetur</td>
-                            <td>$ 30.000</td>
+                            <td>2023-09-28</td>
+                            <td>09:30:00 hasta 18:00:00</td>
                             <td>
                                 <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
                                 <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
@@ -116,8 +115,28 @@
 
                         <tr>
                             <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet consectetur</td>
-                            <td>$ 30.000</td>
+                            <td>2023-09-28</td>
+                            <td>09:30:00 hasta 18:00:00</td>
+                            <td>
+                                <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
+                                <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Definicion de cejas</td>
+                            <td>2023-09-28</td>
+                            <td>09:30:00 hasta 18:00:00</td>
+                            <td>
+                                <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
+                                <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Definicion de cejas</td>
+                            <td>2023-09-28</td>
+                            <td>09:30:00 hasta 18:00:00</td>
                             <td>
                                 <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
                                 <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
@@ -130,6 +149,7 @@
         </section>
 
     </main>
+
 
 
 

@@ -1,17 +1,4 @@
-<?php include("login/login.users.php");
-
-/*$email = $_POST["email"];
-    $password = $_POST["password"];
-
-    if(isset($email) && isset($password)) {
-        $login = new LoginUsers();
-        $login->setEmail($email);
-        $login->setPassword($password);
-        $login->login();
-    }*/
-
-
-?>
+<?php include("controllers/user.controller.php"); ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -20,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glamour Style - Login</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/form.login.css">
+    <link rel="stylesheet" href="views/styles/main.css">
+    <link rel="stylesheet" href="views/styles/form.login.css">
 </head>
 
 <body>
@@ -42,10 +29,8 @@
                         $email = $_POST["email"];
                         $password = $_POST["password"];
                         if (isset($email) && isset($password)) {
-                            $login = new LoginUsers();
-                            $login->setEmail($email);
-                            $login->setPassword($password);
-                            $login->login();
+                            $userController = new UserController();
+                            $userController->loginUser($email, $password);
                         }
                     ?>
                 </div>

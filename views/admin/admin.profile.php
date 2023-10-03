@@ -1,7 +1,8 @@
-<?php include(__DIR__ . "/../login/login.users.php");
+<?php include(__DIR__ . "/../../controllers/admin.controller.php");
 
-    $login = new LoginUsers();
-    $login->headerSecurity();
+    $adminController = new AdminController();
+    $adminController->headerSecurity();
+    $row = $adminController->getByIdAdmin();
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +44,7 @@
                     <a href="#">
                         <article class="card-content">
                             <img class="profile-photo" src="../assets/hermosa-foto.jpg" alt="profile-photo">
-                            <p>Sofía Rodríguez +</p>
+                            <p><?php echo $row["names"] ?> +</p>
                         </article>
                     </a>
                     <div class="dropdown">
@@ -52,7 +53,7 @@
                                 <i class="bi bi-person"></i> Perfil
                             </div>
                         </a>
-                        <a href="../login/logOut.php">
+                        <a href="../../controllers/logOut.php">
                             <div class="item-menu">
                                 <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
                             </div>
@@ -71,7 +72,8 @@
         <section class="section-profile">
             <article class="card-info">
                 <img src="../assets/hermosa-foto.jpg" alt="photo">
-                <h4>Sofía Rodríguez</h4>
+                <h4><?php echo $row["names"]." ".$row["lastnames"] ?></h4>
+                <p style="font-size: var(--font-size-menu); margin-top: 1rem;"><?php echo "(".$_SESSION["rol"].")" ?></p>
             </article>
             <div class="card-options">
                 <a href="#"><i class="bi bi-pencil-square"></i> Editar datos del perfil</a>
