@@ -55,7 +55,7 @@ span {
     width: 45rem;
     min-height: 40rem;
     position: absolute;
-    top: 42%;
+    top: 30%;
     background-color: var(--color-white);
     border-radius: 1rem;
     padding: 1.2rem;
@@ -87,7 +87,7 @@ span {
 .main-forms .container-form .form-login .input,
 .main-forms .container-form .form-login .button-login,
 .main-forms .container-form .form-login .text-password {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Estilo de los inputs */
@@ -128,6 +128,15 @@ span {
 .main-forms .container-form .contaiter-redirect {
     margin-top: 15%;
     font-size: 1.6rem;
+}
+
+.alert {
+    color: #f83016;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    font-size: var(--font-size);
+    padding: 1rem 0;
+    text-align: center;
 }
 
 /* Media query para pantallas de hasta 768px */

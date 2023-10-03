@@ -1,3 +1,9 @@
+<?php include(__DIR__ . "/../login/login.users.php");
+
+    $login = new LoginUsers();
+    $login->headerSecurity();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,23 +21,23 @@
 
 
     <header class="header">
-        <a href="./customer.home.html" class="link-logo">
+        <a href="./admin.service.php" class="link-logo">
             <img src="../assets/logo.png" alt="Logo" class="logo">
             <h4 class="text-logo">Glamour Styles</h4>
         </a>
         <nav class="navbar">
             <ul class="menu">
                 <li class="current-item-page">
-                    <a href="admin.services.html">Inicio</a>
+                    <a href="admin.services.php">Inicio</a>
                 </li>
                 <li>
-                    <a href="admin.stylist.html">Estilistas</a>
+                    <a href="admin.stylist.php">Estilistas</a>
                 </li>
                 <li>
-                    <a href="admin.customers.html">Cientes</a>
+                    <a href="admin.customers.php">Cientes</a>
                 </li>
                 <li>
-                    <a href="admin.admin.html">Administradores</a>
+                    <a href="admin.admin.php">Administradores</a>
                 </li>
                 <li>
                     <a href="#">
@@ -41,12 +47,12 @@
                         </article>
                     </a>
                     <div class="dropdown">
-                        <a href="admin.profile.html">
+                        <a href="admin.profile.php">
                             <div class="item-menu">
                                 <i class="bi bi-person"></i> Perfil
                             </div>
                         </a>
-                        <a href="#">
+                        <a href="../login/logOut.php">
                             <div class="item-menu">
                                 <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
                             </div>

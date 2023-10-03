@@ -1,3 +1,13 @@
+<?php include_once(__DIR__ . "/../login/login.users.php");
+
+    $login = new LoginUsers();
+    $login->headerSecurity();
+    
+    include_once(__DIR__ . "/../models/customer.model.php");
+    $customerModel = new CustomerModel();
+    $row = $customerModel->getAll();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,35 +25,35 @@
 
 
     <header class="header">
-        <a href="./customer.home.html" class="link-logo">
+        <a href="./customer.home.php" class="link-logo">
             <img src="../assets/logo.png" alt="Logo" class="logo">
             <h4 class="text-logo">Glamour Styles</h4>
         </a>
         <nav class="navbar">
             <ul class="menu">
                 <li>
-                    <a href="customer.home.html">Inicio</a>
+                    <a href="customer.home.php">Inicio</a>
                 </li>
                 <li class="current-item-page">
-                    <a href="customer.appointments.html">Citas</a>
+                    <a href="customer.appointments.php">Citas</a>
                 </li>
                 <li>
-                    <a href="customer.bookings.html">Reservas</a>
+                    <a href="customer.bookings.php">Reservas</a>
                 </li>
                 <li>
                     <a href="#">
                         <article class="card-content">
                             <img class="profile-photo" src="../assets/hermosa-foto.jpg" alt="profile-photo">
-                            <p>Sofía Rodríguez +</p>
+                            <p><?php echo $row["names"]?> +</p>
                         </article>
                     </a>
                     <div class="dropdown">
-                        <a href="./customer.profile.html" class="profile">
+                        <a href="./customer.profile.php" class="profile">
                             <div class="item-menu">
                                 <i class="bi bi-person"></i> Perfil
                             </div>
                         </a>
-                        <a href="#">
+                        <a href="../login/logOut.php">
                             <div class="item-menu">
                                 <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
                             </div>
@@ -62,7 +72,7 @@
         <section class="section-profile">
             <article class="card-info">
                 <img src="../assets/hermosa-foto.jpg" alt="photo">
-                <h4>Sofía Rodríguez</h4>
+                <h4><?php echo $row["names"] . " " . $row["lastnames"]?></h4>
             </article>
             <div class="card-options">
                 <a href="#"><i class="bi bi-pencil-square"></i> Editar datos del perfil</a>
