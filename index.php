@@ -1,4 +1,4 @@
-<?php include_once("controllers/user.controller.php"); ?>
+<?php include_once(__DIR__ . "/controllers/user.controller.php"); ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -26,12 +26,8 @@
                 <div class="container-title">
                     <h4 class="title-form">Iniciar Sesión</h4>
                     <?php
-                        $email = $_POST["email"];
-                        $password = $_POST["password"];
-                        if (isset($email) && isset($password)) {
-                            $userController = new UserController();
-                            $userController->loginUser($email, $password);
-                        }
+                        $userController = new UserController();
+                        $userController->loginUser();
                     ?>
                 </div>
                 <form action="./index.php" class="form-login" method="post">

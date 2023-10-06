@@ -8,14 +8,17 @@
             $this->userModel = new UserModel();
         }
 
-        public function loginUser($email, $password) {
-            $this->userModel->setEmail($email);
-            $this->userModel->setPassword($password);
-            $this->userModel->login();
+        public function loginUser() {
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+            if (isset($email) && isset($password)) {
+                $this->userModel->setEmail($email);
+                $this->userModel->setPassword($password);
+                $this->userModel->login();
+            }
         }
 
         public function logOutUser() {
             $this->userModel->logOut();
         }
-
     }

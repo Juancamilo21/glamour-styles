@@ -43,7 +43,7 @@
                 <li>
                     <a href="#">
                         <article class="card-content">
-                            <img class="profile-photo" src="../assets/hermosa-foto.jpg" alt="profile-photo">
+                            <img class="profile-photo" src="../../public/assets/hermosa-foto.jpg" alt="profile-photo">
                             <p><?php echo $row["names"] ?> +</p>
                         </article>
                     </a>
