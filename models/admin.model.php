@@ -6,10 +6,10 @@
             parent::__construct();
         }
 
-        public function getAll() {
+        public function findAll() {
         }
         
-        public function getById() {
+        public function findById() {
             $idUser = $_SESSION["idUser"];
             $sql = "SELECT * FROM users WHERE id_user = $idUser";
     

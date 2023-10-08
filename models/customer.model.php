@@ -17,10 +17,10 @@
             $this->idCustomer = $idCustomer;
         }
 
-        public function getAll() {
+        public function findAll() {
         }
         
-        public function getById() {
+        public function findById() {
             $idUser = $_SESSION["idUser"];
             $sql = "SELECT * FROM customers c 
             INNER JOIN users u ON c.user_id = u.id_user

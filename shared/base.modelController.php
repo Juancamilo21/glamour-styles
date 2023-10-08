@@ -1,9 +1,9 @@
 <?php
 
-    interface BaseModel {
+    interface BaseModelControllers {
 
-        function getAll();
-        function getById();
+        function findAll();
+        function findById();
         function create();
         function update();
         function delete();

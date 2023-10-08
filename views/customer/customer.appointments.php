@@ -1,9 +1,9 @@
 <?php include_once(__DIR__ . "/../../controllers/customer.controller.php");
     
     $customerController = new CustomerController();
-    $customerController->headerSecurity();
+    $customerController->header();
 
-    $row = $customerController->getByIdCustomer();
+    $row = $customerController->findById();
 ?>
 
 <!DOCTYPE html>

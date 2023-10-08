@@ -1,8 +1,8 @@
 <?php include(__DIR__ . "/../../controllers/admin.controller.php");
 
     $adminController = new AdminController();
-    $adminController->headerSecurity();
-    $row = $adminController->getByIdAdmin();
+    $adminController->header();
+    $row = $adminController->findById();
 
 ?>
 

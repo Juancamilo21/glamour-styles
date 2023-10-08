@@ -1,8 +1,8 @@
 <?php
     include_once(__DIR__ . "/../database/database.php");
-    include_once(__DIR__ . "/base.model.php");
+    include_once(__DIR__ . "/../shared/base.modelController.php");
 
-    class UserModel implements BaseModel {
+    class UserModel implements BaseModelControllers {
 
         private $idUser;
         private $roleId;
@@ -99,57 +99,18 @@
             return $this->photoPath;
         }
 
-        public function login() {
+        public function loginUser() {
             $email = $this->email;
-            $password = $this->password;
             $sql = "SELECT id_user AS id, role_name AS rol, email, password FROM users u 
                     INNER JOIN roles r ON r.id_role = u.role_id 
                     WHERE u.email = '$email'";
 
             $connection = $this->databaseConnecion->connection();
-            $row = $connection->query($sql)->fetch_assoc();
-
-            if ($row["email"] !== $email) {
-                echo "<p class='alert'>El correo ingresado es incorrecto</p>";
-                return;
-            }
-
-            if ($row["password"] !== $password) {
-                echo "<p class='alert'>Su contraseña es incorrecta</p>";
-                return;
-            }
-
-            $this->redirectLogin($row);
+            return $connection->query($sql);
         }
 
-        private function redirectLogin($row) {
-            session_start();
-            $_SESSION["rol"] = $row["rol"];
-            $_SESSION["idUser"] = $row["id"];
-            $_SESSION["email"] = $row["email"];
-
-            if ($_SESSION["rol"] === "Admin") {
-                header("location: ./views/admin/admin.services.php");
-            } else {
-                header("location: ./views/customer/customer.home.php");
-            }
-        }
-
-        public function logOut() {
-            session_start();
-            session_destroy();
-            echo "<script>location.href = '../index.php'</script>";
-        }
-
-        public function headerSecurity() {
-            session_start();
-            if (!isset($_SESSION["email"])) {
-                header("location: ../../index.php");
-            }
-        }
-
-        function getAll(){}
-        function getById(){}
+        function findAll(){}
+        function findById(){}
         function create(){}
         function update(){}
         function delete(){}
