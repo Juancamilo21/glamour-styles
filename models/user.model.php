@@ -8,6 +8,7 @@
         private $roleId;
         private $names;
         private $lastnames;
+        private $age;
         private $address;
         private $phoneNumber;
         private $dci;
@@ -23,6 +24,10 @@
 
         public function getIdUser() {
             return $this->idUser;
+        }
+
+        public function setIdUser($idUser) {
+            $this->idUser = $idUser;
         }
 
         public function setRoleId($roleId) {
@@ -47,6 +52,14 @@
 
         public function getLastnames() {
             return $this->lastnames;
+        }
+
+        public function getAge() {
+            return $this->age;
+        }
+
+        public function setAge($age) {
+            $this->age = $age;
         }
 
         public function setAddress($address) {
@@ -109,9 +122,16 @@
             return $connection->query($sql);
         }
 
-        function findAll(){}
-        function findById(){}
-        function create(){}
-        function update(){}
-        function delete(){}
+        public function findAll(){}
+        public function findById(){}
+        public function findByEmail() {
+            $email = $this->email;
+            $sql = "SELECT * FROM users WHERE email = '$email'";
+
+            $connection = $this->databaseConnecion->connection();
+            return $connection->query($sql);
+        }
+        public function create(){}
+        public function update(){}
+        public function delete(){}
     }

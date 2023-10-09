@@ -38,7 +38,7 @@
 
                     <button type="submit" class="button-login">Acceder</button>
 
-                    <a href="#" class="text-password">¿Olvidaste tu contraseña?</a>
+                    <a href="views/resources-pages/user.recover.password.php" class="text-password">¿Olvidaste tu contraseña?</a>
 
                 </form>
 

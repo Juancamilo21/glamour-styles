@@ -23,15 +23,16 @@
             $row = $this->userModel->loginUser()->fetch_assoc();
 
             if ($row["email"] !== $email) {
-                echo "<p class='alert'>El correo ingresado es incorrecto</p>";
+                echo "<p class='alert'>El email ingresado es incorrecto</p>";
                 return;
             }
 
-            if ($row["password"] !== $password) {
+            $verifyPasswordHash = $this->verifyPassword($password, $row["password"]);
+            if (!$verifyPasswordHash) {
                 echo "<p class='alert'>Su contraseña es incorrecta</p>";
                 return;
             }
-
+            
             $this->redirectLogin($row);
         }
 
@@ -61,9 +62,18 @@
             }
         }
 
-        public function findAll(){}
+        public function hashedPassword($password) {
+            return password_hash($password, PASSWORD_DEFAULT, ['cost' => 15]);
+        }
+
+        public function verifyPassword($password, $hash) {
+            return password_verify($password, $hash);
+        }
+
+        public function findAll() {}
         public function findById() {}
-        public function create(){}
-        public function update(){}
-        public function delete(){}
+        public function findByEmail() {}
+        public function create() {}
+        public function update() {}
+        public function delete() {}
     }

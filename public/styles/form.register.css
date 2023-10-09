@@ -134,6 +134,15 @@ span {
     font-size: 1.6rem;
 }
 
+.alert {
+    color: #f83016;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    font-size: var(--font-size-menu);
+    padding: 1rem 0;
+    text-align: center;
+}
+
 /* Media query para pantallas de hasta 768px */
 @media screen and (max-width: 768px) {
     body {

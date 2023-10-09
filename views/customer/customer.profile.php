@@ -41,7 +41,7 @@
                 <li>
                     <a href="#">
                         <article class="card-content">
-                            <img class="profile-photo" src="../../public/assets/hermosa-foto.jpg" alt="profile-photo">
+                            <img class="profile-photo" src="../../upload/<?php echo basename($row["photo_path"]) ?>" alt="profile-photo">
                             <p><?php echo $row["names"]?> +</p>
                         </article>
                     </a>
@@ -69,7 +69,7 @@
 
         <section class="section-profile">
             <article class="card-info">
-                <img src="../../public/assets/hermosa-foto.jpg" alt="photo">
+                <img src="../../upload/<?php echo basename($row["photo_path"]) ?>" alt="photo">
                 <h4><?php echo $row["names"] . " " . $row["lastnames"]?></h4>
             </article>
             <div class="card-options">

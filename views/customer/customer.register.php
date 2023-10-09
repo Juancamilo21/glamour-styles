@@ -1,3 +1,5 @@
+<?php include_once(__DIR__ . "/../../controllers/customer.controller.php"); ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,52 +25,56 @@
             <div class="container-form">
                 <div class="container-title">
                     <h4 class="title-form">Registrarse</h4>
+                    <?php 
+                        $customerController = new CustomerController();
+                        $customerController->create();
+                    ?>
                 </div>
-                <form action="" class="form-register">
+                <form action="" class="form-register" method="post" enctype="multipart/form-data">
 
                     <div class="container-inputs">
-                        <label for="" class="email">Nombres <span>*</span></label>
-                        <input type="text" name="email" id="" class="input">
+                        <label>Nombres <span>*</span></label>
+                        <input type="text" name="names" id="" class="input" required>
                     </div>
 
                     <div class="container-inputs">
-                        <label for="" class="email">Apellidos <span>*</span></label>
-                        <input type="text" name="email" id="" class="input">
+                        <label>Apellidos <span>*</span></label>
+                        <input type="text" name="lastnames" id="" class="input" required>
                     </div>
 
                     <div class="container-inputs">
-                        <label for="" class="email">Edad <span>*</span></label>
-                        <input type="text" name="email" id="" class="input">
+                        <label>Edad <span>*</span></label>
+                        <input type="text" name="age" id="" class="input" required>
                     </div>
 
                     <div class="container-inputs">
-                        <label for="" class="email">Dirección <span>*</span></label>
-                        <input type="text" name="email" id="" class="input">
+                        <label>Dirección <span>*</span></label>
+                        <input type="text" name="address" id="" class="input" required>
                     </div>
 
                     <div class="container-inputs">
-                        <label for="" class="email">Telefono <span>*</span></label>
-                        <input type="text" name="email" id="" class="input">
+                        <label>Telefono <span>*</span></label>
+                        <input type="text" name="phoneNumber" id="" class="input" required>
                     </div>
 
                     <div class="container-inputs">
-                        <label for="" class="email">Cedula <span>*</span></label>
-                        <input type="text" name="email" id="" class="input">
+                        <label>Cedula <span>*</span></label>
+                        <input type="text" name="dci" id="" class="input" required>
                     </div>
 
                     <div class="container-inputs">
-                        <label for="" class="email">Email <span>*</span></label>
-                        <input type="email" name="email" id="" class="input" placeholder="example@gamil.com">
+                        <label>Email <span>*</span></label>
+                        <input type="email" name="email" id="" class="input" placeholder="example@gamil.com" required>
                     </div>
 
                     <div class="container-inputs">
-                        <label for="" class="email">Contraseña <span>*</span></label>
-                        <input type="password" name="password" id="" class="input" placeholder="*****************">
+                        <label>Contraseña <span>*</span></label>
+                        <input type="password" name="password" id="" class="input" placeholder="*****************" required>
                     </div>
 
                     <div class="container-inputs">
-                        <label for="" class="email">Foto de perfil</label>
-                        <input type="file" name="email" id="" class="input" autocomplete="on">
+                        <label>Foto de perfil</label>
+                        <input type="file" name="photo" id="" class="input" accept="image/*">
                     </div>
 
                     <div class="container-button">
