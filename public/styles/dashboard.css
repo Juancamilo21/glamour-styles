@@ -1,0 +1,40 @@
+.section-dashboard .container-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(25rem, 100%), 1fr));
+    gap: 2rem;
+}
+
+
+.section-dashboard .container-card .card {
+    min-height: 22rem;
+    background-color: var(--color-containers);
+    border-radius: 0.5rem;
+}
+
+.section-dashboard .container-card .card .box-number {
+    display: grid;
+    place-items: center center;
+    background-color: var(--primary-color);
+    height: 85%;
+    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+}
+
+.section-dashboard .container-card .card .box-number h4 {
+    font-size: 12rem;
+    color: var(--color-black-faint);
+    font-weight: 800;
+}
+
+.section-dashboard .container-card .card p {
+    font-size: var(--font-size);
+    margin: 0.3rem 0.5rem;
+}
+
+.section-dashboard .container-card .card #box-services {
+    background-color: var(--color-card-info1);
+}
+
+.section-dashboard .container-card .card #box-appoint {
+    background-color: var(--color-card-info2);
+}

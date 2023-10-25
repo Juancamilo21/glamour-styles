@@ -1,6 +1,6 @@
 .main .section-service {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(24rem, 100%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(28rem, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -18,8 +18,8 @@
 
 .main .section-service .article-service .container-img-service img {
     width: 100%;
+    height: 22rem;
     object-fit: cover;
-    background-size: cover;
     border-top-right-radius: 2rem;
     border-top-left-radius: 2rem;
 }
@@ -27,6 +27,7 @@
 .main .section-service .article-service .container-content-service {
     text-align: center;
     margin: 1rem;
+    padding: 1rem;
 }
 
 .main .section-service .container-content-service h4 {
@@ -40,12 +41,12 @@
     margin-bottom: 1rem;
 }
 
-.main .section-service .article-service .button-detail-service,
-.main .section-service .article-service .button-appoint {
-    padding: 0.5rem;
-    width: 10rem;
+.main .section-service .article-service .button-card {
+    padding: 0.8rem 1.2rem;
     background-color: var(--primary-color);
+    border: none;
     border-radius: 1rem;
+    cursor: pointer;
     color: var(--color-white);
     display: inline-block;
     text-decoration: none;

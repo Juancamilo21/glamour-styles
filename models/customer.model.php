@@ -2,32 +2,9 @@
     include_once(__DIR__ . "/user.model.php");
 
     class CustomerModel extends UserModel {
-
-        private $idCustomer;
-
+        
         public function __construct() {
             parent::__construct();
-        }
-
-        public function getIdCustomer() {
-            return $this->idCustomer;
-        }
-
-        public function setIdCustomer($idCustomer) {
-            $this->idCustomer = $idCustomer;
-        }
-
-        public function findAll() {
-        }
-        
-        public function findById() {
-            $idUser = $this->getIdUser();
-            $sql = "SELECT * FROM customers c 
-            INNER JOIN users u ON c.user_id = u.id_user
-            WHERE u.id_user = $idUser";
-    
-            $connection = $this->databaseConnecion->connection();
-            return $connection->query($sql);
         }
 
         public function create() {
@@ -40,9 +17,10 @@
             $dci = $this->getDci();
             $email = $this->getEmail();
             $password = $this->getPassword();
-            $photoPath = $this->getPhotoPath();
 
-            $sql = "CALL register_customer($roleId, '$names', '$lastnames', $age, '$address', '$phoneNumber', '$dci', '$email', '$password', '$photoPath')";
+            $sql = "INSERT INTO users(role_id, names, lastnames, age, address, phone_number, dci, email, password) 
+            VALUES
+            ($roleId, '$names', '$lastnames', $age, '$address', '$phoneNumber', '$dci', '$email', '$password')";
 
             $connection = $this->databaseConnecion->connection();
             return $connection->query($sql);

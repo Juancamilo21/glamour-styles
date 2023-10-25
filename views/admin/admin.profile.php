@@ -1,8 +1,13 @@
-<?php include(__DIR__ . "/../../controllers/admin.controller.php");
-
-    $adminController = new AdminController();
-    $adminController->header();
-    $row = $adminController->findById();
+<?php include_once(__DIR__ . "/../../controllers/user.controller.php");
+    
+    $userController = new UserController();
+    $userController->header();
+    
+    $response = $userController->findById();
+    $row = array();
+    if($response) {
+        $row = $response->fetch_assoc();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +33,11 @@
         </a>
         <nav class="navbar">
             <ul class="menu">
-                <li class="current-item-page">
-                    <a href="admin.services.php">Inicio</a>
+                <li>
+                    <a href="admin.home.php">Inicio</a>
+                </li>
+                <li>
+                    <a href="admin.services.php">Servicios</a>
                 </li>
                 <li>
                     <a href="admin.stylist.php">Estilistas</a>
@@ -38,13 +46,20 @@
                     <a href="admin.customers.php">Cientes</a>
                 </li>
                 <li>
-                    <a href="admin.admin.php">Administradores</a>
+                    <a href="admin.admin.php">Admins</a>
                 </li>
                 <li>
                     <a href="#">
                         <article class="card-content">
-                            <img class="profile-photo" src="../../upload/<?php echo basename($row["photo_path"]) ?>">
-                            <p><?php echo $row["names"] ?> +</p>
+                        <img class="profile-photo" src="../../upload/default.png" alt="profile-photo">
+                            <p> 
+                                <?php 
+                                    if (isset($row["names"])) {
+                                        echo $row["names"];
+                                    }
+                                ?> 
+                                +
+                            </p>
                         </article>
                     </a>
                     <div class="dropdown">
@@ -71,13 +86,24 @@
 
         <section class="section-profile">
             <article class="card-info">
-                <img src="../../upload/<?php echo basename($row["photo_path"]) ?>" alt="photo">
-                <h4><?php echo $row["names"]." ".$row["lastnames"] ?></h4>
-                <p style="font-size: var(--font-size-menu); margin-top: 1rem;"><?php echo "(".$_SESSION["rol"].")" ?></p>
+                <img src="../../upload/default.png" alt="photo">
+                <h4><?php
+                    if (isset($row["names"]) && isset($row["lastnames"])) {
+                        echo $row["names"] . " " . $row["lastnames"];
+                    }
+                
+                ?></h4>
+                <p style="font-size: var(--font-size-menu); margin-top: 1rem;">
+                    <?php
+                        if (isset($_SESSION["rol"])) {
+                            echo "(".$_SESSION["rol"].")";
+                        }
+                    ?>
+                </p>
             </article>
             <div class="card-options">
-                <a href="#"><i class="bi bi-pencil-square"></i> Editar datos del perfil</a>
-                <a href="#" style="background-color: var(--color-danger);"><i class="bi bi-trash"></i> Eliminar perfil</a>
+                <a href="#"><i class="bi bi-pencil-fill"></i> Editar datos del perfil</a>
+                <a href="../../controllers/logOut.php" style="background-color: var(--color-danger);"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a>
             </div>
         </section>
 

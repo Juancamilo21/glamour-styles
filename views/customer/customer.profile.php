@@ -1,9 +1,13 @@
-<?php include_once(__DIR__ . "/../../controllers/customer.controller.php");
+<?php include_once(__DIR__ . "/../../controllers/user.controller.php");
     
-    $customerController = new CustomerController();
-    $customerController->header();
-
-    $row = $customerController->findById();
+    $userController = new UserController();
+    $userController->header();
+    
+    $response = $userController->findById();
+    $row = array();
+    if($response) {
+        $row = $response->fetch_assoc();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +19,7 @@
     <title>Glamour Styles - Profile</title>
     <link rel="stylesheet" href="../../public/styles/main.css">
     <link rel="stylesheet" href="../../public/styles/header.css">
+    <link rel="stylesheet" href="../../public/styles/footer.css">
     <link rel="stylesheet" href="../../public/styles/profile.css">
     <script defer src="../../public/js/main.js"></script>
 </head>
@@ -32,17 +37,21 @@
                 <li>
                     <a href="customer.home.php">Inicio</a>
                 </li>
-                <li class="current-item-page">
-                    <a href="customer.appointments.php">Citas</a>
-                </li>
                 <li>
-                    <a href="customer.bookings.php">Reservas</a>
+                    <a href="customer.appointments.php">Calendario</a>
                 </li>
                 <li>
                     <a href="#">
                         <article class="card-content">
-                            <img class="profile-photo" src="../../upload/<?php echo basename($row["photo_path"]) ?>" alt="profile-photo">
-                            <p><?php echo $row["names"]?> +</p>
+                            <img class="profile-photo" src="../../upload/default.png" alt="profile-photo">
+                            <p> 
+                                <?php 
+                                    if (isset($row["names"])) {
+                                        echo $row["names"];
+                                    }
+                                ?> 
+                                +
+                            </p>
                         </article>
                     </a>
                     <div class="dropdown">
@@ -69,17 +78,38 @@
 
         <section class="section-profile">
             <article class="card-info">
-                <img src="../../upload/<?php echo basename($row["photo_path"]) ?>" alt="photo">
-                <h4><?php echo $row["names"] . " " . $row["lastnames"]?></h4>
+                <img src="../../upload/default.png" alt="photo">
+                <h4>
+                    <?php 
+                        if (isset($row["names"]) && isset($row["lastnames"])) {
+                            echo $row["names"] . " " . $row["lastnames"];
+                        }
+                    ?>
+                </h4>
             </article>
             <div class="card-options">
-                <a href="#"><i class="bi bi-pencil-square"></i> Editar datos del perfil</a>
-                <a href="#" style="background-color: var(--color-danger);"><i class="bi bi-trash"></i> Eliminar perfil</a>
+                <a href="#"><i class="bi bi-pencil-fill"></i> Editar datos del perfil</a>
+                <a href="../../controllers/logOut.php" style="background-color: var(--color-danger);"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a>
             </div>
         </section>
 
     </main>
 
+    <footer class="footer">
+        <div class="box-footer-logo">
+            <h4 class="text-logo">Glamour Styles</h4>
+        </div>
+        <div class="box-footer-info">
+            <p>&copy; Derechos reservados - 2023</p>
+        </div>
+        <div class="box-footer-media">
+            <a href="https://Wa.me/+573022294543" target="_blank"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://www.facebook.com/?locale=es_LA" target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.tiktok.com/es/" target="_blank"><i class="bi bi-tiktok"></i></a>
+        </div>
+
+    </footer>
 
 
 </body>

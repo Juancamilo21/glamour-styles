@@ -1,0 +1,44 @@
+.custom-title {
+    color: var(--primary-color);
+}
+
+.custom-alert-container form, 
+.custom-alert-container .box-datails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 40rem;
+}
+
+.custom-alert-container .box-form {
+    padding: 0.5rem;
+    overflow: auto;
+    height: 26rem;
+    width: 100%;
+}
+
+.custom-alert-container .box-datails span {
+    font-weight: 600;
+    color: var(--color-black);
+}
+
+.custom-alert-container .box-datails p {
+    font-weight: 500;
+    color: var(--color-black);
+}
+
+.custom-alert-container label {
+    color: var(--color-black);
+    margin-bottom: 0.2rem;
+}
+
+.custom-alert-container input,
+.custom-alert-container select {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    font-size: var(--font-size);
+    outline: none;
+}

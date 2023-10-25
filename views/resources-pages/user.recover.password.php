@@ -16,9 +16,15 @@
             <div class="back"></div>
             <div class="container-form">
                 <div class="container-title">
-                    <h4 class="title-form">¿Olvidaste tu Contrseña?</h4>
+                    <h4 class="title-form">Cambia tu Contrseña</h4>
+                    <?php include_once(__DIR__ . "/../../controllers/user.controller.php");
+
+                        $userController = new UserController();
+                        $userController->updatedPassword();
+
+                    ?>
                 </div>
-                <form action="./index.php" class="form-login" method="post">
+                <form action="./user.recover.password.php" class="form-login" method="post">
                     <label for="" class="email">Ingresa tu email <span>*</span></label>
                     <input type="email" name="email" class="input" placeholder="example@gmail.com" required>
                     <label for="" class="email">Nueva contraseña <span>*</span></label>

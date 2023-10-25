@@ -11,12 +11,12 @@
         }
 
         public function loginUser() {
-            $email = $_POST["email"];
-            $password = $_POST["password"];
             
-            if (!isset($email) && !isset($password)) {
+            if (!isset($_POST["email"]) && !isset($_POST["password"])) {
                 return;
             }
+            $email = $_POST["email"];
+            $password = $_POST["password"];
 
             $this->userModel->setEmail($email);
 
@@ -43,7 +43,7 @@
             $_SESSION["email"] = $row["email"];
 
             if ($_SESSION["rol"] === "Admin") {
-                header("location: ./views/admin/admin.services.php");
+                header("location: ./views/admin/admin.home.php");
             } else {
                 header("location: ./views/customer/customer.home.php");
             }
@@ -71,9 +71,110 @@
         }
 
         public function findAll() {}
-        public function findById() {}
+
+        public function findById() {
+            $response = null;
+            if (isset($_SESSION["idUser"])) {
+                $this->userModel->setIdUser($_SESSION["idUser"]);
+                $response = $this->userModel->findById();
+            }
+            return $response;
+        }
+
+        public function getById() {
+
+            if (!isset($_GET["id"])) return;
+
+            $this->userModel->setIdUser($_GET["id"]);
+            $result = $this->userModel->findById();
+
+            if ($result) {
+                $data = $result->fetch_assoc();
+                http_response_code(200);
+                echo json_encode($data);
+            } else {
+                http_response_code(500);
+                echo json_encode(array("message" => "Error al realizar la operación", "status" => 500));
+            }
+        }
+
         public function findByEmail() {}
+
+        public function findByRole($roleId) {
+            $this->userModel->setRoleId($roleId);
+            $result = $this->userModel->findByRole();
+            return $result;
+        }
+
         public function create() {}
-        public function update() {}
-        public function delete() {}
+
+        public function update() {
+            if (
+                !isset($_POST["id"]) && !isset($_POST["names"]) && !isset($_POST["lastnames"]) && !isset($_POST["age"]) && !isset($_POST["address"]) &&
+                !isset($_POST["phoneNumber"]) && !isset($_POST["dci"]) && !isset($_POST["email"])
+            ) {
+                return;
+            }
+
+            $this->userModel->setIdUser($_POST["id"]);
+            $this->userModel->setNames($_POST["names"]);
+            $this->userModel->setLastnames($_POST["lastnames"]);
+            $this->userModel->setAge($_POST["age"]);
+            $this->userModel->setAddress($_POST["address"]);
+            $this->userModel->setPhoneNumber($_POST["phoneNumber"]);
+            $this->userModel->setDci($_POST["dci"]);
+            $this->userModel->setEmail($_POST["email"]);
+
+            $response = $this->userModel->update();
+
+            if($response) {
+                echo json_encode(array("message" => "Actualizado exitosamente"));
+            } else  {
+                http_response_code(500);
+                echo json_encode(array("message" => "Ha ocurrido un error inesperado, intentelo nuevamente"));
+            }
+        }
+
+        public function delete() {
+            
+            if(!isset($_GET["id"])) return;
+
+            $this->userModel->setIdUser($_GET["id"]);
+            $result = $this->userModel->delete();
+
+            if ($result) {
+                echo json_encode(array("message" => "Se ha eliminado exitosamente"));
+            } else {
+                http_response_code(500);
+                echo json_encode(array("message" => "Error al realizar la operación"));
+            }
+        }
+
+        public function updatedPassword() {
+
+            if (!isset($_POST["email"]) && !isset($_POST["password"])) {
+                return;
+            }
+
+            $this->userModel->setEmail($_POST["email"]);
+
+            $response = $this->userModel->findByEmail();
+
+            if ($response->num_rows <= 0) {
+                echo "<p class='alert'>El email ingresado es incorrecto</p>";
+                return;
+            }
+
+            $hashedPassword = $this->hashedPassword($_POST["password"]);
+            $row = $response->fetch_assoc();
+            $this->userModel->setIdUser($row["id_user"]);
+            $this->userModel->setPassword($hashedPassword);
+
+            $resChangePassword = $this->userModel->updatedPassword();
+            if($resChangePassword) {
+                echo "<p class='alert' style='color: #007bff;'>Se ha cambiado la contraseña exitosamente</p>";
+            } else  {
+                echo "<p class='alert'>No se pudo llevar acabo la operación, vuelva a intentarlo</p>";
+            }
+        }
     }

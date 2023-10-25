@@ -1,5 +1,5 @@
 <?php
-    include_once(__DIR__ . "/../database/database.php");
+    include_once(__DIR__ . "/../config/database.php");
     include_once(__DIR__ . "/../shared/base.modelController.php");
 
     class UserModel implements BaseModelControllers {
@@ -11,10 +11,10 @@
         private $age;
         private $address;
         private $phoneNumber;
+        private $salary;
         private $dci;
         private $email;
         private $password;
-        private $photoPath;
 
         protected $databaseConnecion;
 
@@ -78,6 +78,14 @@
             return $this->phoneNumber;
         }
 
+        public function setSalary($salry) {
+            $this->salary = $salry;
+        }
+
+        public function getSalary() {
+            return $this->salary;
+        }
+
         public function setDci($dci) {
             $this->dci = $dci;
         }
@@ -102,16 +110,6 @@
             return $this->password;
         }
 
-        public function setPhotoPath($photoPath)
-        {
-            $this->photoPath = $photoPath;
-        }
-
-        public function getPhotoPath()
-        {
-            return $this->photoPath;
-        }
-
         public function loginUser() {
             $email = $this->email;
             $sql = "SELECT id_user AS id, role_name AS rol, email, password FROM users u 
@@ -123,15 +121,74 @@
         }
 
         public function findAll(){}
-        public function findById(){}
+
+        public function findById(){
+            $idUser = $this->getIdUser();
+            $sql = "SELECT * FROM users WHERE id_user = $idUser";
+            $connection = $this->databaseConnecion->connection();
+            return $connection->query($sql);
+        }
+
+        public function findByRole() {
+            $roleId = $this->getRoleId();
+            $sql = "SELECT * FROM users WHERE role_id = $roleId";
+
+            $connection = $this->databaseConnecion->connection();
+            $result = $connection->query($sql);
+
+            $connection->close();
+
+            return $result;
+        }
+        
         public function findByEmail() {
             $email = $this->email;
-            $sql = "SELECT * FROM users WHERE email = '$email'";
+            $sql = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
 
             $connection = $this->databaseConnecion->connection();
             return $connection->query($sql);
         }
-        public function create(){}
-        public function update(){}
-        public function delete(){}
+
+        public function create() {}
+        
+        public function update() {
+            $idUser = $this->idUser;
+            $names = $this->names;
+            $lastnames = $this->lastnames;
+            $age = $this->age;
+            $address = $this->address;
+            $phoneNumber = $this->phoneNumber;
+            $dci = $this->dci;
+            $email = $this->email;
+
+            $sql = "UPDATE users SET names = '$names', lastnames = '$lastnames', age = '$age', address = '$address', phone_number = '$phoneNumber', dci = '$dci', email = '$email' WHERE id_user = $idUser";
+
+            $connection = $this->databaseConnecion->connection();
+            $result = $connection->query($sql);
+
+            $connection->close();
+
+            return $result;
+        }
+
+        public function delete(){
+            $idUser = $this->idUser;
+            $sql = "DELETE FROM users WHERE id_user = $idUser";
+
+            $connection = $this->databaseConnecion->connection();
+            $result = $connection->query($sql);
+
+            $connection->close();
+            
+            return $result;
+        }
+
+        public function updatedPassword() {
+            $idUser = $this->idUser;
+            $newPassword = $this->password;
+            $sql = "UPDATE users SET password = '$newPassword' WHERE id_user = $idUser";
+
+            $connection = $this->databaseConnecion->connection();
+            return $connection->query($sql);
+        }
     }

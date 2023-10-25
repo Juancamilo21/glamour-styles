@@ -1,8 +1,13 @@
-<?php include(__DIR__ . "/../../controllers/admin.controller.php");
+<?php include_once(__DIR__ . "/../../controllers/user.controller.php");
 
-    $adminController = new AdminController();
-    $adminController->header();
-    $row = $adminController->findById();
+$userController = new UserController();
+$userController->header();
+
+$response = $userController->findById();
+$row = array();
+if ($response) {
+    $row = $response->fetch_assoc();
+}
 
 ?>
 
@@ -16,6 +21,7 @@
     <link rel="stylesheet" href="../../public/styles/main.css">
     <link rel="stylesheet" href="../../public/styles/header.css">
     <link rel="stylesheet" href="../../public/styles/tables.css">
+    <link rel="stylesheet" href="../../public/styles/sweet.alert.css">
     <script defer src="../../public/js/main.js"></script>
 </head>
 
@@ -29,8 +35,11 @@
         </a>
         <nav class="navbar">
             <ul class="menu">
+                <li>
+                    <a href="admin.home.php">Inicio</a>
+                </li>
                 <li class="current-item-page">
-                    <a href="admin.services.php" class="current-page">Inicio</a>
+                    <a href="admin.services.php" class="current-page">Servicios</a>
                 </li>
                 <li>
                     <a href="admin.stylist.php">Estilistas</a>
@@ -39,13 +48,20 @@
                     <a href="admin.customers.php">Cientes</a>
                 </li>
                 <li>
-                    <a href="admin.admin.php">Administradores</a>
+                    <a href="admin.admin.php">Admins</a>
                 </li>
                 <li>
                     <a href="#">
                         <article class="card-content">
-                            <img class="profile-photo" src="../../upload/<?php echo basename($row["photo_path"]) ?>" alt="profile-photo">
-                            <p><?php echo $row["names"] ?> +</p>
+                            <img class="profile-photo" src="../../upload/default.png" alt="profile-photo">
+                            <p>
+                                <?php
+                                if (isset($row["names"])) {
+                                    echo $row["names"];
+                                }
+                                ?>
+                                +
+                            </p>
                         </article>
                     </a>
                     <div class="dropdown">
@@ -71,70 +87,30 @@
     <main class="main">
 
         <section class="section-table">
+            <div class="box-button-modal">
+                <button type="button" class="button-modal-add" id="button-modal-add"><i class="bi bi-plus-circle-fill"></i>Nuevo</button>
+            </div>
             <div class="container-table">
-                <div class="box-info-tabla">
-                    <h4>Servicios</h4>
-                </div>
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Nombre</th>
-                            <th>Descripcion</th>
+                            <th>Imagen</th>
                             <th>Precio</th>
                             <th>Eventos</th>
                         </tr>
                     </thead>
-
-                    <tbody>
-                        <tr>
-                            <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet</td>
-                            <td>$ 30.000</td>
-                            <td>
-                                <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
-                                <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet</td>
-                            <td>$ 30.000</td>
-                            <td>
-                                <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
-                                <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet</td>
-                            <td>$ 30.000</td>
-                            <td>
-                                <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
-                                <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet</td>
-                            <td>$ 30.000</td>
-                            <td>
-                                <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
-                                <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
-                            </td>
-                        </tr>
-
-                    </tbody>
+                    <tbody id="tbody"></tbody>
                 </table>
             </div>
         </section>
 
     </main>
 
-
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../public/js/alerts.js"></script>
+    <script src="../../public/js/admin/service.js"></script>
 </body>
 
 </html>

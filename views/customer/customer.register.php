@@ -44,7 +44,7 @@
 
                     <div class="container-inputs">
                         <label>Edad <span>*</span></label>
-                        <input type="text" name="age" id="" class="input" required>
+                        <input type="number" name="age" id="" class="input" required>
                     </div>
 
                     <div class="container-inputs">
@@ -54,12 +54,12 @@
 
                     <div class="container-inputs">
                         <label>Telefono <span>*</span></label>
-                        <input type="text" name="phoneNumber" id="" class="input" required>
+                        <input type="number" name="phoneNumber" id="" class="input" required>
                     </div>
 
                     <div class="container-inputs">
                         <label>Cedula <span>*</span></label>
-                        <input type="text" name="dci" id="" class="input" required>
+                        <input type="number" name="dci" id="" class="input" required>
                     </div>
 
                     <div class="container-inputs">
@@ -72,15 +72,10 @@
                         <input type="password" name="password" id="" class="input" placeholder="*****************" required>
                     </div>
 
-                    <div class="container-inputs">
-                        <label>Foto de perfil</label>
-                        <input type="file" name="photo" id="" class="input" accept="image/*">
-                    </div>
-
                     <div class="container-button">
                         <button type="submit" class="button-login">Registrarse</button>
                     </div>
-
+                    
                 </form>
                 <div class="contaiter-redirect">
                     <p>¿Ya tienes cuenta? <a href="../../index.php">Iniciar Sesión</a></p>

@@ -36,6 +36,7 @@ a {
 
 /* Estilos generales del documento */
 html {
+    height: 100%;
     font-family: 'JetBrains Mono', monospace; /* Fuente personalizada */
     font-size: var(--size); /* Tamaño de fuente base */
     scroll-behavior: smooth;
@@ -52,6 +53,7 @@ body {
 /* Estilos para la clase .main */
 .main {
     padding: 12rem 2rem; /* Relleno de la clase .main */
+    flex: 1;
 }
 
 ::-webkit-scrollbar {
@@ -66,3 +68,8 @@ body {
 ::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 0.6rem rgba(0, 0, 0, 0.3);
 }
+
+.swal2-popup {
+    font-size: var(--font-size-menu);
+}
+

@@ -1,8 +1,6 @@
 <?php
-
-    include_once(__DIR__ . "/../models/customer.model.php");
     include_once(__DIR__ . "/user.controller.php");
-    include_once(__DIR__ . "/../shared/upload.file.php");
+    include_once(__DIR__ . "/../models/customer.model.php");
 
     class CustomerController extends UserController {
 
@@ -10,16 +8,6 @@
 
         public function __construct() {
             $this->customerModel = new CustomerModel();
-        }
-
-        public function findAll() {
-        }
-
-        public function findById() {
-            $this->customerModel->setIdUser($_SESSION["idUser"]);
-            $response = $this->customerModel->findById();
-
-            return $response->fetch_assoc();
         }
 
         public function create() {
@@ -36,13 +24,6 @@
                 echo "<p class='alert'>El email: ". $_POST['email']. " ya existe</p>";
                 return;
             }
-            
-            $photo = $_FILES["photo"];
-            $photoTmp = $_FILES["photo"]["tmp_name"];
-            $photoName = $_FILES["photo"]["name"];
-            $photoError = $_FILES["photo"]["error"];
-            
-            $photoPath = pathUploadImage($photo, $photoTmp, $photoName, $photoError);
 
             $hashedPassword = $this->hashedPassword($_POST["password"]);
             
@@ -55,20 +36,14 @@
             $this->customerModel->setDci($_POST["dci"]);
             $this->customerModel->setEmail($_POST["email"]);
             $this->customerModel->setPassword($hashedPassword);
-            $this->customerModel->setPhotoPath($photoPath);
 
             $response = $this->customerModel->create();
+
             if($response) {
                 echo "<p class='alert' style='color: #007bff;'>Se ha registrado exitosamente</p>";
-            }else  {
+            } else  {
                 echo "<p class='alert'>No se pudo registrar revise sus datos, intentelo nuevamente</p>";
             }
-            
         }
-        public function update() {
-        }
-        public function delete() {
-        }
-
         
     }

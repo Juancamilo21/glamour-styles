@@ -16,11 +16,10 @@ if ($response) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glamour Styles - Home</title>
+    <title>Glamour Styles - Administradores</title>
     <link rel="stylesheet" href="../../public/styles/main.css">
     <link rel="stylesheet" href="../../public/styles/header.css">
-    <link rel="stylesheet" href="../../public/styles/footer.css">
-    <link rel="stylesheet" href="../../public/styles/home.css">
+    <link rel="stylesheet" href="../../public/styles/dashboard.css">
     <script defer src="../../public/js/main.js"></script>
 </head>
 
@@ -28,18 +27,26 @@ if ($response) {
 
 
     <header class="header">
-        <a href="./customer.home.php" class="link-logo">
+        <a href="./admin.service.php" class="link-logo">
             <img src="../../public/assets/logo.png" alt="Logo" class="logo">
             <h4 class="text-logo">Glamour Styles</h4>
         </a>
         <nav class="navbar">
             <ul class="menu">
                 <li class="current-item-page">
-                    <a href="customer.home.php" class="current-page">Inicio</a>
+                    <a href="admin.home.php" class="current-page">Inicio</a>
                 </li>
-
                 <li>
-                    <a href="customer.appointments.php">Calendario</a>
+                    <a href="admin.services.php">Servicios</a>
+                </li>
+                <li>
+                    <a href="admin.stylist.php">Estilistas</a>
+                </li>
+                <li>
+                    <a href="admin.customers.php">Cientes</a>
+                </li>
+                <li>
+                    <a href="admin.admin.php">Admins</a>
                 </li>
                 <li>
                     <a href="#">
@@ -56,7 +63,7 @@ if ($response) {
                         </article>
                     </a>
                     <div class="dropdown">
-                        <a href="./customer.profile.php">
+                        <a href="admin.profile.php">
                             <div class="item-menu">
                                 <i class="bi bi-person"></i> Perfil
                             </div>
@@ -76,29 +83,31 @@ if ($response) {
     </header>
 
     <main class="main">
-        <section class="section-service" id="section-service"></section>
+
+        <section class="section-dashboard">
+            <div class="container-card">
+                <article class="card">
+                    <div class="box-number" id="box-stylist">
+                        <h4>5</h4>
+                    </div>
+                    <p>Estilistas</p>
+                </article>
+                <article class="card">
+                    <div class="box-number" id="box-services">
+                        <h4>5</h4>
+                    </div>
+                    <p>Servicios</p>
+                </article>
+                <article class="card">
+                    <div class="box-number" id="box-appoint">
+                        <h4>5</h4>
+                    </div>
+                    <p>Citas Realizadas</p>
+                </article>
+            </div>
+        </section>
+
     </main>
-
-    <footer class="footer">
-        <div class="box-footer-logo">
-            <h4 class="text-logo">Glamour Styles</h4>
-        </div>
-        <div class="box-footer-info">
-            <p>&copy; Derechos reservados - 2023</p>
-        </div>
-        <div class="box-footer-media">
-            <a href="https://Wa.me/+573022294543" target="_blank"><i class="bi bi-whatsapp"></i></a>
-            <a href="https://www.facebook.com/?locale=es_LA" target="_blank"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.tiktok.com/es/" target="_blank"><i class="bi bi-tiktok"></i></a>
-        </div>
-
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../public/js/alerts.js"></script>
-    <script src="../../public/js/format.js"></script>
-    <script src="../../public/js/customer/home.js"></script>
 
 </body>
 

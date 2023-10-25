@@ -1,8 +1,13 @@
-<?php include(__DIR__ . "/../../controllers/admin.controller.php");
-
-    $adminController = new AdminController();
-    $adminController->header();
-    $row = $adminController->findById();
+<?php include_once(__DIR__ . "/../../controllers/user.controller.php");
+    
+    $userController = new UserController();
+    $userController->header();
+    
+    $response = $userController->findById();
+    $row = array();
+    if($response) {
+        $row = $response->fetch_assoc();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +20,7 @@
     <link rel="stylesheet" href="../../public/styles/main.css">
     <link rel="stylesheet" href="../../public/styles/header.css">
     <link rel="stylesheet" href="../../public/styles/tables.css">
+    <link rel="stylesheet" href="../../public/styles/sweet.alert.css">
     <script defer src="../../public/js/main.js"></script>
 </head>
 
@@ -28,23 +34,33 @@
         </a>
         <nav class="navbar">
             <ul class="menu">
-                <li class="current-item-page">
-                    <a href="admin.services.php">Inicio</a>
+                <li>
+                    <a href="admin.home.php">Inicio</a>
+                </li>
+                <li>
+                    <a href="admin.services.php">Servicios</a>
                 </li>
                 <li>
                     <a href="admin.stylist.php">Estilistas</a>
                 </li>
-                <li>
+                <li class="current-item-page">
                     <a href="admin.customers.php" class="current-page">Cientes</a>
                 </li>
                 <li>
-                    <a href="admin.admin.php">Administradores</a>
+                    <a href="admin.admin.php">Admins</a>
                 </li>
                 <li>
                     <a href="#">
                         <article class="card-content">
-                            <img class="profile-photo" src="../../upload/<?php echo basename($row["photo_path"]) ?>" alt="profile-photo">
-                            <p><?php echo $row["names"] ?> +</p>
+                        <img class="profile-photo" src="../../upload/default.png" alt="profile-photo">
+                            <p> 
+                                <?php 
+                                    if (isset($row["names"])) {
+                                        echo $row["names"];
+                                    }
+                                ?> 
+                                +
+                            </p>
                         </article>
                     </a>
                     <div class="dropdown">
@@ -71,68 +87,29 @@
 
         <section class="section-table">
             <div class="container-table">
-                <div class="box-info-tabla">
-                    <h4>Servicios</h4>
-                </div>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Precio</th>
-                            <th>Eventos</th>
+                            <th>#</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Edad</th>
+                            <th>Email</th>
+                            <th>Detalles</th>
                         </tr>
                     </thead>
 
-                    <tbody>
-                        <tr>
-                            <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet consectetur</td>
-                            <td>$ 30.000</td>
-                            <td>
-                                <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
-                                <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet consectetur</td>
-                            <td>$ 30.000</td>
-                            <td>
-                                <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
-                                <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet consectetur</td>
-                            <td>$ 30.000</td>
-                            <td>
-                                <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
-                                <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Definicion de cejas</td>
-                            <td>Lorem ipsum dolor sit amet consectetur</td>
-                            <td>$ 30.000</td>
-                            <td>
-                                <a href="#" style="color: var(--color-secondary);"><i class="bi bi-eye-fill"></i></a>
-                                <a href="#"><i class="bi bi-x-octagon-fill"></i></a>
-                            </td>
-                        </tr>
-
-                    </tbody>
+                    <tbody id="tbody"></tbody>
                 </table>
             </div>
         </section>
 
     </main>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../public/js/alerts.js"></script>
+    <script src="../../public/js/admin/user.js"></script>
+    <script src="../../public/js/admin/customer.js"></script>
 
 </body>
 

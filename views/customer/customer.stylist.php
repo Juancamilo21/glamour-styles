@@ -1,9 +1,13 @@
-<?php include_once(__DIR__ . "/../../controllers/customer.controller.php");
+<?php include_once(__DIR__ . "/../../controllers/user.controller.php");
     
-    $customerController = new CustomerController();
-    $customerController->header();
-
-    $row = $customerController->findById();
+    $userController = new UserController();
+    $userController->header();
+    
+    $response = $userController->findById();
+    $row = array();
+    if($response) {
+        $row = $response->fetch_assoc();
+    }
 
 ?>
 
@@ -16,6 +20,7 @@
     <title>Glamour Styles - Stylists</title>
     <link rel="stylesheet" href="../../public/styles/main.css">
     <link rel="stylesheet" href="../../public/styles/header.css">
+    <link rel="stylesheet" href="../../public/styles/footer.css">
     <link rel="stylesheet" href="../../public/styles/stylist.css">
     <script defer src="../../public/js/main.js"></script>
 </head>
@@ -34,16 +39,20 @@
                     <a href="customer.home.php">Inicio</a>
                 </li>
                 <li>
-                    <a href="customer.appointments.php">Citas</a>
-                </li>
-                <li>
-                    <a href="customer.bookings.php">Reservas</a>
+                    <a href="customer.appointments.php">Calendario</a>
                 </li>
                 <li>
                     <a href="#">
                         <article class="card-content">
-                            <img class="profile-photo" src="../../upload/<?php echo basename($row["photo_path"]) ?>" alt="profile-photo">
-                            <p><?php echo $row["names"]?> +</p>
+                            <img class="profile-photo" src="../../upload/default.png" alt="profile-photo">
+                            <p> 
+                                <?php 
+                                    if (isset($row["names"])) {
+                                        echo $row["names"];
+                                    }
+                                ?> 
+                                +
+                            </p>
                         </article>
                     </a>
                     <div class="dropdown">
@@ -67,59 +76,31 @@
     </header>
 
     <main class="main">
-        <section class="section-stylist">
-            <article class="article-info-styles">
-                <div class="container-info">
-                    <img src="../../public/assets/peluquera.jpg" alt="photo">
-                    <div class="info-stylist">
-                        <h4>Martha Sanchez Benitez</h4>
-                        <p>Fecha: 2023-09-08</p>
-                        <p>Horario: 08:00:00 hasta 16:00:00</p>
-                    </div>
-                </div>
-                <a href="#">Agregar a citas</a>
-            </article>
-
-            <article class="article-info-styles">
-                <div class="container-info">
-                    <img src="../../public/assets/peluquera.jpg" alt="photo">
-                    <div class="info-stylist">
-                        <h4>Martha Sanchez Benitez</h4>
-                        <p>Fecha: 2023-09-08</p>
-                        <p>Horario: 08:00:00 hasta 16:00:00</p>
-                    </div>
-                </div>
-                <a href="#">Agregar a citas</a>
-            </article>
-
-            <article class="article-info-styles">
-                <div class="container-info">
-                    <img src="../../public/assets/peluquera.jpg" alt="photo">
-                    <div class="info-stylist">
-                        <h4>Martha Sanchez Benitez</h4>
-                        <p>Fecha: 2023-09-08</p>
-                        <p>Horario: 08:00:00 hasta 16:00:00</p>
-                    </div>
-                </div>
-                <a href="#">Agregar a citas</a>
-            </article>
-
-            <article class="article-info-styles">
-                <div class="container-info">
-                    <img src="../../public/assets/peluquera.jpg" alt="photo">
-                    <div class="info-stylist">
-                        <h4>Martha Sanchez Benitez</h4>
-                        <p>Fecha: 2023-09-08</p>
-                        <p>Horario: 08:00:00 hasta 16:00:00</p>
-                    </div>
-                </div>
-                <a href="#">Agregar a citas</a>
-            </article>
-        </section>
+        <h2 class="title">Selecciona el estilista de tu preferencia</h2>
+        <section class="section-stylist" id="section-stylist"></section>
     </main>
 
+    <footer class="footer">
+        <div class="box-footer-logo">
+            <h4 class="text-logo">Glamour Styles</h4>
+        </div>
+        <div class="box-footer-info">
+            <p>&copy; Derechos reservados - 2023</p>
+        </div>
+        <div class="box-footer-media">
+            <a href="https://Wa.me/+573022294543" target="_blank"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://www.facebook.com/?locale=es_LA" target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.tiktok.com/es/" target="_blank"><i class="bi bi-tiktok"></i></a>
+        </div>
+
+    </footer>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../public/js/alerts.js"></script>
+    <script src="../../public/js/format.js"></script>
+    <script src="../../public/js/customer/employees.js"></script>
 
 </body>
 

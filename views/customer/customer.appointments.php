@@ -1,9 +1,13 @@
-<?php include_once(__DIR__ . "/../../controllers/customer.controller.php");
-    
-    $customerController = new CustomerController();
-    $customerController->header();
+<?php include_once(__DIR__ . "/../../controllers/user.controller.php");
 
-    $row = $customerController->findById();
+$userController = new UserController();
+$userController->header();
+
+$response = $userController->findById();
+$row = array();
+if ($response) {
+    $row = $response->fetch_assoc();
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,8 +19,17 @@
     <title>Glamour Styles - Appointments</title>
     <link rel="stylesheet" href="../../public/styles/main.css">
     <link rel="stylesheet" href="../../public/styles/header.css">
+    <link rel="stylesheet" href="../../public/styles/footer.css">
     <link rel="stylesheet" href="../../public/styles/appointment.css">
     <script defer src="../../public/js/main.js"></script>
+
+    <style>
+        #calendar {
+            background-color: var(--color-containers);
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,16 +46,20 @@
                     <a href="customer.home.php">Inicio</a>
                 </li>
                 <li class="current-item-page">
-                    <a href="customer.appointments.php" class="current-page">Citas</a>
-                </li>
-                <li>
-                    <a href="customer.bookings.php">Reservas</a>
+                    <a href="customer.appointments.php" class="current-page">Calendario</a>
                 </li>
                 <li>
                     <a href="#">
                         <article class="card-content">
-                            <img class="profile-photo" src="../../upload/<?php echo basename($row["photo_path"]) ?>" alt="profile-photo">
-                            <p><?php echo $row["names"] ?> +</p>
+                            <img class="profile-photo" src="../../upload/default.png" alt="profile-photo">
+                            <p>
+                                <?php
+                                if (isset($row["names"])) {
+                                    echo $row["names"];
+                                }
+                                ?>
+                                +
+                            </p>
                         </article>
                     </a>
                     <div class="dropdown">
@@ -67,10 +84,13 @@
 
     <main class="main">
 
+        <div id="calendar"></div>
+
+        <!-- 
         <section class="section-title">
             <h1>Citas por confirmar</h1>
         </section>
-
+    
         <section class="section-appoint">
             <article class="article-info-appoint">
                 <div class="container-info">
@@ -86,7 +106,7 @@
                 </div>
                 <p>Precio: $ 35.000</p>
             </article>
-
+    
             <article class="article-info-appoint">
                 <div class="container-info">
                     <img src="../../public/assets/pestañas.jpg" alt="photo">
@@ -102,7 +122,7 @@
                 <p>Precio: $ 35.000</p>
             </article>
         </section>
-
+    
         <section class="section-total">
             <div class="container-total">
                 <p>Total: $70.000</p>
@@ -110,10 +130,40 @@
             </div>
         </section>
 
+
+    -->
+
+
     </main>
 
 
+    <footer class="footer">
+        <div class="box-footer-logo">
+            <h4 class="text-logo">Glamour Styles</h4>
+        </div>
+        <div class="box-footer-info">
+            <p>&copy; Derechos reservados - 2023</p>
+        </div>
+        <div class="box-footer-media">
+            <a href="https://Wa.me/+573022294543" target="_blank"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://www.facebook.com/?locale=es_LA" target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.tiktok.com/es/" target="_blank"><i class="bi bi-tiktok"></i></a>
+        </div>
 
+    </footer>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let calendarEl = document.getElementById('calendar');
+            let calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: "es",
+            });
+            calendar.render();
+        });
+    </script>
 </body>
 
 </html>

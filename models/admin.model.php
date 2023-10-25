@@ -6,15 +6,27 @@
             parent::__construct();
         }
 
-        public function findAll() {
-        }
-        
-        public function findById() {
-            $idUser = $_SESSION["idUser"];
-            $sql = "SELECT * FROM users WHERE id_user = $idUser";
-    
+        public function create() {
+            $roleId = $this->getRoleId();
+            $names = $this->getNames();
+            $lastnames = $this->getLastnames();
+            $age = $this->getAge();
+            $address = $this->getAddress();
+            $phoneNumber = $this->getPhoneNumber();
+            $dci = $this->getDci();
+            $email = $this->getEmail();
+            $password = $this->getPassword();
+
+            $sql = "INSERT INTO users(role_id, names, lastnames, age, address, phone_number, dci, email, password) 
+            VALUES
+            ($roleId, '$names', '$lastnames', $age, '$address', '$phoneNumber', '$dci', '$email', '$password')";
+
             $connection = $this->databaseConnecion->connection();
-            return $connection->query($sql);
+            $result = $connection->query($sql);
+
+            $connection->close();
+
+            return $result;
         }
 
     }
