@@ -28,7 +28,7 @@ if ($response) {
 
 
     <header class="header">
-        <a href="./admin.service.php" class="link-logo">
+        <a href="./admin.home.php" class="link-logo">
             <img src="../../public/assets/logo.png" alt="Logo" class="logo">
             <h4 class="text-logo">Glamour Styles</h4>
         </a>
