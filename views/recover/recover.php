@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -16,26 +16,23 @@
             <div class="back"></div>
             <div class="container-form">
                 <div class="container-title">
-                    <h4 class="title-form">Cambia tu Contrseña</h4>
+                    <h4 class="title-form">Recuperar Cuenta</h4>
                     <?php include_once(__DIR__ . "/../../controllers/user.controller.php");
 
                         $userController = new UserController();
-                        $userController->updatedPassword();
+                        $userController->recoverPassword();
 
                     ?>
                 </div>
-                <form action="./user.recover.password.php" class="form-login" method="post">
+                <form action="./recover.php" class="form-login" method="post">
                     <label for="" class="email">Ingresa tu email <span>*</span></label>
                     <input type="email" name="email" class="input" placeholder="example@gmail.com" required>
-                    <label for="" class="email">Nueva contraseña <span>*</span></label>
-                    <input type="password" name="password" class="input" placeholder="*****************" required>
-
-                    <button type="submit" class="button-login">Actualizar</button>
+                    <button type="submit" class="button-login">Recuperar</button>
 
                 </form>
 
                 <div class="contaiter-redirect">
-                    <a href="../../index.php">Regresar</a>
+                    <p>¿Has recuperado tu cuenta? <a href="../../index.php">Iniciar Sesión</a></p>
                 </div>
             </div>
         </div>

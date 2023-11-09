@@ -36,7 +36,7 @@ function showDataEmployees(data) {
     const buttonSelected = document.createElement("button");
     buttonSelected.className = "button-employee";
     buttonSelected.id = "button-selected";
-    buttonSelected.innerText = "Seleccionar";
+    buttonSelected.innerText = "Agendar";
 
     const buttonDetails = document.createElement("button");
     buttonDetails.className = "button-employee";

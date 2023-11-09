@@ -53,7 +53,7 @@ span {
 /* Estilo del contenedor del formulario */
 .main-forms .container .container-form {
     width: 45rem;
-    min-height: 40rem;
+    min-height: 20rem;
     position: absolute;
     top: 30%;
     background-color: var(--color-white);

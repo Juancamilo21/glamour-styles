@@ -34,11 +34,11 @@
                     <label for="" class="email">Email <span>*</span></label>
                     <input type="email" name="email" class="input" placeholder="example@gmail.com" required>
                     <label for="" class="email">Contraseña <span>*</span></label>
-                    <input type="password" name="password" class="input" placeholder="*****************" required>
+                    <input type="password" name="password" class="input" placeholder="*****************">
 
                     <button type="submit" class="button-login">Acceder</button>
 
-                    <a href="views/resources-pages/user.recover.password.php" class="text-password">¿Olvidaste tu contraseña?</a>
+                    <a href="views/recover/recover.php" class="text-password">¿Olvidaste tu contraseña?</a>
 
                 </form>
 

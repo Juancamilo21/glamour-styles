@@ -1,9 +1,13 @@
-function successAlert(textMessage) {
+function successAlert(textMessage, title, callback) {
   Swal.fire({
-    title: "Eliminado",
+    title: title,
     text: textMessage,
     icon: "success",
     confirmButtonColor: "var(--primary-color)",
+  }).then((result) => {
+    if(result.isConfirmed) {
+      callback();
+    }
   });
 }
 
@@ -30,6 +34,15 @@ function confirmAlert(textMessage, callback) {
     if (result.isConfirmed) {
       callback();
     }
+  });
+}
+
+function warningAlert(textMessage, title) {
+  Swal.fire({
+    title: title,
+    text: textMessage,
+    icon: "warning",
+    confirmButtonColor: "var(--primary-color)",
   });
 }
 

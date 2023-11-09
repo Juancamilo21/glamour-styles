@@ -27,7 +27,7 @@ async function deleteUser(id, roleId, showTable) {
     if (!response.ok) {
       throw new Error(`${data.message}`);
     }
-    successAlert(data.message);
+    successAlert(data.message, () => {});
     showUsers(roleId, showTable);
   } catch (error) {
     errorAlert(error.message);

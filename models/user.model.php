@@ -15,6 +15,8 @@
         private $dci;
         private $email;
         private $password;
+        private $token;
+        private $timeExpireToken;
 
         protected $databaseConnecion;
 
@@ -110,6 +112,22 @@
             return $this->password;
         }
 
+        public function setToken($token) {
+            $this->token = $token;
+        }
+
+        public function getToken() {
+            return $this->token;
+        }
+
+        public function setTimeExpireToken($time) {
+            $this->timeExpireToken = $time;
+        }
+
+        public function getTimeExpireToken() {
+            return $this->timeExpireToken;
+        }
+
         public function loginUser() {
             $email = $this->email;
             $sql = "SELECT id_user AS id, role_name AS rol, email, password FROM users u 
@@ -149,6 +167,18 @@
             return $connection->query($sql);
         }
 
+        public function findByToken() {
+            $token = $this->token;
+            $sql = "SELECT * FROM users WHERE token = '$token' LIMIT 1";
+
+            $connection = $this->databaseConnecion->connection();
+            $result = $connection->query($sql);
+
+            $connection->close();
+
+            return $result;
+        }
+
         public function create() {}
         
         public function update() {
@@ -183,12 +213,30 @@
             return $result;
         }
 
+        public function updateToken() {
+            $idUser = $this->idUser;
+            $token = $this->token;
+            $time = $this->timeExpireToken;
+            $sql = "UPDATE users SET token = '$token', time_token = $time WHERE id_user = $idUser";
+
+            $connection = $this->databaseConnecion->connection();
+            $result = $connection->query($sql);
+
+            $connection->close();
+
+            return $result;
+        }
+
         public function updatedPassword() {
             $idUser = $this->idUser;
             $newPassword = $this->password;
             $sql = "UPDATE users SET password = '$newPassword' WHERE id_user = $idUser";
 
             $connection = $this->databaseConnecion->connection();
-            return $connection->query($sql);
+            $result = $connection->query($sql);
+
+            $connection->close();
+
+            return $result;
         }
     }

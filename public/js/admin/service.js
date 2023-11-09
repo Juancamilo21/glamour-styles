@@ -117,7 +117,7 @@ async function deleteService(id) {
     );
     if (!response.ok) throw new Error("No se pudo completar la operación");
     const data = await response.json();
-    successAlert(data.message);
+    successAlert(data.message, () => {});
     showServices();
   } catch (error) {
     errorAlert(error.message);

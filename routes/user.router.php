@@ -1,4 +1,5 @@
-<?php include_once(__DIR__ . "/../controllers/user.controller.php");
+
+<?php 
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         requestsPost();
@@ -9,6 +10,8 @@
     }
 
     function requestsPost() {
+        include_once(__DIR__ . "/../controllers/user.controller.php");
+        $userController = new UserController();
         if (isset($_POST["route"])) {
             switch ($_POST["route"]) {
                 case "createAdmin":
@@ -18,8 +21,6 @@
                     break;
                     
                 case "updateUser":
-                    include_once(__DIR__ . "/../controllers/user.controller.php");
-                    $userController = new UserController();
                     $userController->update();
                     break;
 
@@ -33,6 +34,10 @@
                     include_once(__DIR__ . "/../controllers/employee.controller.php");
                     $employeeController = new EmployeeController();
                     $employeeController->update();
+                    break;
+
+                case "updatePassword":
+                    $userController->updatePassword();
                     break;
             }
         }
@@ -71,6 +76,10 @@
 
                 case "delete":
                     $userController->delete();
+                    break;
+
+                case "verifyToken":
+                    $userController->findByToken();
                     break;
             }
         }
