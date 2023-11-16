@@ -45,7 +45,7 @@ class EmailSender {
                 </div>
                 <div style='padding: 15px;'>
                     <p style='font-size: 14px'>
-                        Sr(a). <strong>$userNames</strong>, usted ha solicidato un cambio de contrseña para su cuenta del sitio Glamour Styles.
+                        Sr(a). <strong>$userNames</strong>, usted ha solicidato un cambio de contraseña para su cuenta del sitio Glamour Styles.
                         <br><br>
                         Por favor acceda al siguiente enlace para crear una nueva contraseña para su cuenta: <a href='http://localhost/glamour-styles/views/recover/forgot.password.php?token=$token'>Recuperar contraseña</a>
                     </p>

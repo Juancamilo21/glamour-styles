@@ -17,18 +17,12 @@
             <div class="container-form">
                 <div class="container-title">
                     <h4 class="title-form">Recuperar Cuenta</h4>
-                    <?php include_once(__DIR__ . "/../../controllers/user.controller.php");
-
-                        $userController = new UserController();
-                        $userController->recoverPassword();
-
-                    ?>
+                    <p class="alert" id="info-mail"></p>
                 </div>
-                <form action="./recover.php" class="form-login" method="post">
+                <form class="form-login" method="post" id="form">
                     <label for="" class="email">Ingresa tu email <span>*</span></label>
                     <input type="email" name="email" class="input" placeholder="example@gmail.com" required>
-                    <button type="submit" class="button-login">Recuperar</button>
-
+                    <button type="submit" class="button-login" id="button">Recuperar</button>
                 </form>
 
                 <div class="contaiter-redirect">
@@ -37,7 +31,9 @@
             </div>
         </div>
     </main>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../public/js/alerts.js"></script>
+    <script src="../../public/js/user/mail.js"></script>
 </body>
 
 </html>

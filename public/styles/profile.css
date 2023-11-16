@@ -29,14 +29,17 @@
     flex-direction: column;
 }
 
-.main .section-profile .card-options a  {
+.main .section-profile .card-options a,
+.main .section-profile .card-options .button-edit  {
     padding: 1.5rem;
     margin-bottom: 2rem;
+    border: none;
     border-radius: 1rem;
     font-size: var(--font-size-menu);
     color: var(--color-white);
     font-weight: 600;
     background-color: var(--color-secondary);
+    cursor: pointer;
 }
 
 @media screen and (max-width: 400px) {

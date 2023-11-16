@@ -115,7 +115,7 @@ span {
 }
 
 /* Estilo del botón de inicio de sesión */
-.main-forms .container .container-form .form-register .button-login {
+.main-forms .container .container-form .form-register .button-register {
     border: none;
     border-radius: 0.5rem;
     background-color: var(--primary-color);

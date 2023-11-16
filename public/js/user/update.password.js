@@ -1,4 +1,5 @@
 const form = document.querySelector("form");
+const button = document.getElementById("button");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -6,36 +7,40 @@ form.addEventListener("submit", async (e) => {
 });
 
 async function updatePasswordUser() {
-  try {
-    const formData = new FormData(form);
-    if (
-      formData.get("password") === "" ||
-      formData.get("passwordConfirm") === ""
-    ) {
-      warningAlert("Todos los campos son obligatorios");
-      return;
-    }
-
-    if (formData.get("password") !== formData.get("passwordConfirm")) {
-      warningAlert("Las contraseñas no coinciden", "Oops");
-      return;
-    }
-
-    formData.append("route", "updatePassword");
-    const response = await fetch("../../routes/user.router.php", {
-      method: "POST",
-      body: formData,
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(`${data.message}`);
-    successAlert(
-      data.message,
-      "Opeación Exitosa",
-      () => (location.href = "../../index.php")
-    );
-  } catch (error) {
-    warningAlert(error.message);
+  const formData = new FormData(form);
+  if (
+    formData.get("password") === "" ||
+    formData.get("passwordConfirm") === ""
+  ) {
+    warningAlert("Todos los campos son obligatorios");
+    return;
   }
+
+  if (formData.get("password") !== formData.get("passwordConfirm")) {
+    warningAlert("Las contraseñas no coinciden", "¡Oops!");
+    return;
+  }
+
+  formData.append("route", "updatePassword");
+  button.innerHTML = "<span class='loader'></span>";
+  const response = await fetch("../../routes/user.router.php", {
+    method: "POST",
+    body: formData,
+  });
+  const data = await response.json();
+
+  if (!response.ok) {
+    warningAlert(data.message, "¡Oops!");
+    button.innerText = "Guardar cambios";
+    location.href = "../../index.php";
+    return;
+  }
+  button.innerText = "Guardar cambios";
+  successAlert(
+    data.message,
+    "Opeación Exitosa",
+    () => (location.href = "../../index.php")
+  );
 }
 
 async function verifyTokenUser(token) {
@@ -48,7 +53,6 @@ async function verifyTokenUser(token) {
       return;
     }
     const data = await response.json();
-    console.log(data);
     document.getElementById("uid").value = data.id_user;
     document.getElementById("token").value = data.token;
   } catch (error) {

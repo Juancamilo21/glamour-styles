@@ -1,5 +1,3 @@
-<?php include_once(__DIR__ . "/../../controllers/customer.controller.php"); ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -25,55 +23,51 @@
             <div class="container-form">
                 <div class="container-title">
                     <h4 class="title-form">Registrarse</h4>
-                    <?php 
-                        $customerController = new CustomerController();
-                        $customerController->create();
-                    ?>
                 </div>
-                <form action="" class="form-register" method="post" enctype="multipart/form-data">
+                <form class="form-register" method="post" id="form">
 
                     <div class="container-inputs">
                         <label>Nombres <span>*</span></label>
-                        <input type="text" name="names" id="" class="input" required>
+                        <input type="text" name="names" class="input" required>
                     </div>
 
                     <div class="container-inputs">
                         <label>Apellidos <span>*</span></label>
-                        <input type="text" name="lastnames" id="" class="input" required>
+                        <input type="text" name="lastnames" class="input" required>
                     </div>
 
                     <div class="container-inputs">
                         <label>Edad <span>*</span></label>
-                        <input type="number" name="age" id="" class="input" required>
+                        <input type="number" name="age" class="input" required>
                     </div>
 
                     <div class="container-inputs">
                         <label>Dirección <span>*</span></label>
-                        <input type="text" name="address" id="" class="input" required>
+                        <input type="text" name="address" class="input" required>
                     </div>
 
                     <div class="container-inputs">
                         <label>Telefono <span>*</span></label>
-                        <input type="number" name="phoneNumber" id="" class="input" required>
+                        <input type="number" name="phoneNumber" class="input" required>
                     </div>
 
                     <div class="container-inputs">
                         <label>Cedula <span>*</span></label>
-                        <input type="number" name="dci" id="" class="input" required>
+                        <input type="number" name="dci" class="input" required>
                     </div>
 
                     <div class="container-inputs">
                         <label>Email <span>*</span></label>
-                        <input type="email" name="email" id="" class="input" placeholder="example@gamil.com" required>
+                        <input type="email" name="email" class="input" placeholder="example@gamil.com" required>
                     </div>
 
                     <div class="container-inputs">
                         <label>Contraseña <span>*</span></label>
-                        <input type="password" name="password" id="" class="input" placeholder="*****************" required>
+                        <input type="password" name="password" class="input" placeholder="*****************" required>
                     </div>
 
                     <div class="container-button">
-                        <button type="submit" class="button-login">Registrarse</button>
+                        <button type="submit" class="button-register" id="button-register">Registrarse</button>
                     </div>
                     
                 </form>
@@ -83,6 +77,10 @@
             </div>
         </div>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../public/js/alerts.js"></script>
+    <script src="../../public/js/customer/register.js"></script>
 </body>
 
 </html>

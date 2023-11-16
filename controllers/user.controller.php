@@ -24,31 +24,30 @@ class UserController implements BaseModelControllers {
 
         $row = $this->userModel->loginUser()->fetch_assoc();
 
-        if ($row["email"] !== $email) {
-            echo "<p class='alert'>El email ingresado es incorrecto</p>";
+        if (!isset($row["email"])) {
+            http_response_code(400);
+            echo json_encode(array("message" => "El email ingresado no está registrado"));
+            return;
+        }
+
+        if($row["rol"] === "Employee") {
+            http_response_code(400);
+            echo json_encode(array("message" => "Este usuario no tiene permisos de acceso"));
             return;
         }
 
         $verifyPasswordHash = $this->verifyPassword($password, $row["password"]);
         if (!$verifyPasswordHash) {
-            echo "<p class='alert'>Su contraseña es incorrecta</p>";
+            http_response_code(400);
+            echo json_encode(array("message" => "La contraseña ingresada es incorrecta"));
             return;
         }
-
-        $this->redirectLogin($row);
-    }
-
-    private function redirectLogin($row) {
         session_start();
         $_SESSION["rol"] = $row["rol"];
         $_SESSION["idUser"] = $row["id"];
         $_SESSION["email"] = $row["email"];
 
-        if ($_SESSION["rol"] === "Admin") {
-            header("location: ./views/admin/admin.home.php");
-        } else {
-            header("location: ./views/customer/customer.home.php");
-        }
+        echo json_encode(array("role" => $row["rol"]));
     }
 
     public function logOutUser() {
@@ -91,13 +90,12 @@ class UserController implements BaseModelControllers {
         $this->userModel->setIdUser($_GET["id"]);
         $result = $this->userModel->findById();
 
-        if ($result) {
+        if ($result->num_rows > 0) {
             $data = $result->fetch_assoc();
-            http_response_code(200);
             echo json_encode($data);
         } else {
-            http_response_code(500);
-            echo json_encode(array("message" => "Error al realizar la operación", "status" => 500));
+            http_response_code(400);
+            echo json_encode(array("message" => "Error al realizar la operación"));
         }
     }
 
@@ -135,7 +133,7 @@ class UserController implements BaseModelControllers {
         if ($response) {
             echo json_encode(array("message" => "Actualizado exitosamente"));
         } else {
-            http_response_code(500);
+            http_response_code(400);
             echo json_encode(array("message" => "Ha ocurrido un error inesperado, intentelo nuevamente"));
         }
     }
@@ -188,7 +186,8 @@ class UserController implements BaseModelControllers {
         if ($res) {
             echo json_encode(array("message" => "Contraseña cambiada exitosamente"));
         } else {
-            http_response_code(500);
+            http_response_code(400);
+            echo json_encode(array("message" => "No es posible realizar la operación, solicite un nuevo enlace"));
         }
 
     }
@@ -199,6 +198,11 @@ class UserController implements BaseModelControllers {
         $this->userModel->setToken($_GET["token"]);
         $result = $this->userModel->findByToken();
         $row = $result->fetch_assoc();
+
+        if (!isset($row["time_token"])) {
+            http_response_code(400);
+            return;
+        }
 
         if (!$this->verifyToken($result, $row["time_token"])) {
             http_response_code(400);
@@ -226,21 +230,29 @@ class UserController implements BaseModelControllers {
         $result = $this->userModel->findByEmail();
 
         if ($result->num_rows <= 0) {
-            echo "<p class='alert'>El email ingresado no está registrado</p>";
+            http_response_code(404);
+            echo json_encode(array("message" => "El email ingresado no está registrado"));
             return;
         }
-
+        
         $row = $result->fetch_assoc();
-
+        
+        if($row["role_id"] === "3") {
+            http_response_code(400);
+            echo json_encode(array("message" => "Este usuario no tiene permiso de realizar esta acción"));
+            return;
+        }
+        
         $token = generateToken();
         $timeExpire = time() + 1800;
-
+        
         $this->userModel->setIdUser($row["id_user"]);
         $this->userModel->setToken($token);
         $this->userModel->setTimeExpireToken($timeExpire);
         $result = $this->userModel->updateToken();
         if (!$result) {
-            echo "<p class='alert'>No se pudo completar la operación vuelva a intentarlo</p>";
+            http_response_code(400);
+            echo json_encode(array("message" => "No fue posible completar esta opearión"));
             return;
         }
 
@@ -249,9 +261,10 @@ class UserController implements BaseModelControllers {
         $emailSender = new EmailSender();
         $resultSendEmail = $emailSender->sendEmail($row["email"], $userNames, $token);
         if ($resultSendEmail) {
-            echo "<p class='alert' style='color: #007bff;'>Se ha enviado un correo a su dirección de email con los pasos a seguir</p>";
+            echo json_encode(array("message" => "Se ha enviado un correo a su dirección de email con los pasos a seguir"));
         } else {
-            echo "<p class='alert'>No se pudo completar la operación vuelva a intentarlo</p>";
+            http_response_code(400);
+            echo json_encode(array("message" => "No fue posible completar esta opearión"));
         }
     }
 }

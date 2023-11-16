@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="../../public/styles/header.css">
     <link rel="stylesheet" href="../../public/styles/footer.css">
     <link rel="stylesheet" href="../../public/styles/profile.css">
+    <link rel="stylesheet" href="../../public/styles/sweet.alert.css">
     <script defer src="../../public/js/main.js"></script>
 </head>
 
@@ -88,7 +89,8 @@
                 </h4>
             </article>
             <div class="card-options">
-                <a href="#"><i class="bi bi-pencil-fill"></i> Editar datos del perfil</a>
+                <button type="button" class="button-edit" id="button-edit" data-id="<?php if(isset($row["id_user"])) echo $row["id_user"] ?>"><i class="bi bi-pencil-fill"></i> Editar datos del perfil</button>
+
                 <a href="../../controllers/logOut.php" style="background-color: var(--color-danger);"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a>
             </div>
         </section>
@@ -111,7 +113,9 @@
 
     </footer>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../public/js/alerts.js"></script>
+    <script src="../../public/js/user/update.user.js"></script>
 </body>
 
 </html>

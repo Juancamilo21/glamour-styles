@@ -1,24 +1,34 @@
 /* Importación de fuentes desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Kavoon&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css");
+
 /* Definición de variables CSS personalizadas */
 :root {
-    --primary-color: #BB006F; /* Color primario */
+    --primary-color: #BB006F;
+    /* Color primario */
     --color-danger: #dc3545;
     --color-secondary: #6c757d;
     --color-warning: #ffc107;
-    --background-color: #f0f0f0; /* Color de fondo general */
-    --color-white: #fff; /* Color blanco */
+    --background-color: #f0f0f0;
+    /* Color de fondo general */
+    --color-white: #fff;
+    /* Color blanco */
     --color-black: #000000;
     --color-black-faint: #222222;
-    --color-containers: #fafafa; /* Color de los contenedores */
-    --color-border: #999999; /* Color del borde */
+    --color-containers: #fafafa;
+    /* Color de los contenedores */
+    --color-border: #999999;
+    /* Color del borde */
     --color-card-info1: #877A8C;
     --color-card-info2: #1C8FB4;
-    --color-link: #0019fd; /* Color de los enlaces */
-    --font-size: 16px; /* Tamaño de fuente base */
-    --font-size-menu: 14px; /* Tamaño de fuente base */
-    --size: 10px; /* Tamaño base (puede ser utilizado para ajustar el escalado) */
+    --color-link: #0019fd;
+    /* Color de los enlaces */
+    --font-size: 16px;
+    /* Tamaño de fuente base */
+    --font-size-menu: 14px;
+    /* Tamaño de fuente base */
+    --size: 10px;
+    /* Tamaño base (puede ser utilizado para ajustar el escalado) */
 }
 
 /* Estilos globales para todos los elementos */
@@ -37,8 +47,10 @@ a {
 /* Estilos generales del documento */
 html {
     height: 100%;
-    font-family: 'JetBrains Mono', monospace; /* Fuente personalizada */
-    font-size: var(--size); /* Tamaño de fuente base */
+    font-family: 'JetBrains Mono', monospace;
+    /* Fuente personalizada */
+    font-size: var(--size);
+    /* Tamaño de fuente base */
     scroll-behavior: smooth;
 }
 
@@ -46,13 +58,16 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100%; /* Altura mínima del cuerpo */
-    background-color: var(--background-color); /* Color de fondo del cuerpo */
+    min-height: 100%;
+    /* Altura mínima del cuerpo */
+    background-color: var(--background-color);
+    /* Color de fondo del cuerpo */
 }
 
 /* Estilos para la clase .main */
 .main {
-    padding: 12rem 2rem; /* Relleno de la clase .main */
+    padding: 12rem 2rem;
+    /* Relleno de la clase .main */
     flex: 1;
 }
 
@@ -73,3 +88,23 @@ body {
     font-size: var(--font-size-menu);
 }
 
+.loader {
+    width: 2.2rem;
+    height: 2.2rem;
+    border: 0.3rem solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

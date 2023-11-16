@@ -20,8 +20,9 @@
 
             $this->customerModel->setEmail($_POST["email"]);
             $userByEmail = $this->customerModel->findByEmail();
-            if($userByEmail->num_rows > 0){
-                echo "<p class='alert'>El email: ". $_POST['email']. " ya existe</p>";
+            if($userByEmail->num_rows > 0) {
+                http_response_code(400);
+                echo json_encode(array("message" => "El usuario con este email ya existe"));
                 return;
             }
 
@@ -36,13 +37,11 @@
             $this->customerModel->setDci($_POST["dci"]);
             $this->customerModel->setEmail($_POST["email"]);
             $this->customerModel->setPassword($hashedPassword);
-
+            
             $response = $this->customerModel->create();
-
+            
             if($response) {
-                echo "<p class='alert' style='color: #007bff;'>Se ha registrado exitosamente</p>";
-            } else  {
-                echo "<p class='alert'>No se pudo registrar revise sus datos, intentelo nuevamente</p>";
+                echo json_encode(array("message" => "Te has registrado exitosamente"));
             }
         }
         

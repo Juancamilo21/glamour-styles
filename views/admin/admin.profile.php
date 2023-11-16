@@ -1,13 +1,13 @@
 <?php include_once(__DIR__ . "/../../controllers/user.controller.php");
-    
-    $userController = new UserController();
-    $userController->header();
-    
-    $response = $userController->findById();
-    $row = array();
-    if($response) {
-        $row = $response->fetch_assoc();
-    }
+
+$userController = new UserController();
+$userController->header();
+
+$response = $userController->findById();
+$row = array();
+if ($response) {
+    $row = $response->fetch_assoc();
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="../../public/styles/main.css">
     <link rel="stylesheet" href="../../public/styles/header.css">
     <link rel="stylesheet" href="../../public/styles/profile.css">
+    <link rel="stylesheet" href="../../public/styles/sweet.alert.css">
     <script defer src="../../public/js/main.js"></script>
 </head>
 
@@ -51,13 +52,13 @@
                 <li>
                     <a href="#">
                         <article class="card-content">
-                        <img class="profile-photo" src="../../upload/default.png" alt="profile-photo">
-                            <p> 
-                                <?php 
-                                    if (isset($row["names"])) {
-                                        echo $row["names"];
-                                    }
-                                ?> 
+                            <img class="profile-photo" src="../../upload/default.png" alt="profile-photo">
+                            <p>
+                                <?php
+                                if (isset($row["names"])) {
+                                    echo $row["names"];
+                                }
+                                ?>
                                 +
                             </p>
                         </article>
@@ -91,25 +92,27 @@
                     if (isset($row["names"]) && isset($row["lastnames"])) {
                         echo $row["names"] . " " . $row["lastnames"];
                     }
-                
-                ?></h4>
+
+                    ?></h4>
                 <p style="font-size: var(--font-size-menu); margin-top: 1rem;">
                     <?php
-                        if (isset($_SESSION["rol"])) {
-                            echo "(".$_SESSION["rol"].")";
-                        }
+                    if (isset($_SESSION["rol"])) {
+                        echo "(" . $_SESSION["rol"] . ")";
+                    }
                     ?>
                 </p>
             </article>
             <div class="card-options">
-                <a href="#"><i class="bi bi-pencil-fill"></i> Editar datos del perfil</a>
+            <button type="button" class="button-edit" id="button-edit" data-id="<?php if(isset($row["id_user"])) echo $row["id_user"] ?>"><i class="bi bi-pencil-fill"></i> Editar datos del perfil</button>
                 <a href="../../controllers/logOut.php" style="background-color: var(--color-danger);"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a>
             </div>
         </section>
 
     </main>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../public/js/alerts.js"></script>
+    <script src="../../public/js/user/update.user.js"></script>
 
 </body>
 

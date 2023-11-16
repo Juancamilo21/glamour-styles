@@ -32,7 +32,7 @@
                     <label for="pass" class="email">Confirmar contraseña <span>*</span></label>
                     <input type="password" name="passwordConfirm" id="passwordConfirm" class="input" placeholder="*****************" required>
 
-                    <button type="submit" class="button-login">Guardar cambios</button>
+                    <button type="submit" class="button-login" id="button">Guardar cambios</button>
                 </form>
             </div>
     </main>

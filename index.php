@@ -1,5 +1,3 @@
-<?php include_once(__DIR__ . "/controllers/user.controller.php"); ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -25,18 +23,14 @@
             <div class="container-form">
                 <div class="container-title">
                     <h4 class="title-form">Iniciar Sesión</h4>
-                    <?php
-                        $userController = new UserController();
-                        $userController->loginUser();
-                    ?>
                 </div>
-                <form action="./index.php" class="form-login" method="post">
+                <form class="form-login" method="post" id="form">
                     <label for="" class="email">Email <span>*</span></label>
                     <input type="email" name="email" class="input" placeholder="example@gmail.com" required>
                     <label for="" class="email">Contraseña <span>*</span></label>
                     <input type="password" name="password" class="input" placeholder="*****************">
 
-                    <button type="submit" class="button-login">Acceder</button>
+                    <button type="submit" class="button-login" id="button-login">Acceder</button>
 
                     <a href="views/recover/recover.php" class="text-password">¿Olvidaste tu contraseña?</a>
 
@@ -48,6 +42,11 @@
             </div>
         </div>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./public/js/alerts.js"></script>
+    <script src="./public/js/user/login.js"></script>
+
 </body>
 
 </html>

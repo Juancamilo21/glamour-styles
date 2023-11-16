@@ -30,6 +30,12 @@
                     $employeeController->create();
                     break;
 
+                case "createCustomer":
+                        include_once(__DIR__ . "/../controllers/customer.controller.php");
+                        $customerController = new CustomerController();
+                        $customerController->create();
+                    break;
+
                 case "updateEmployee":
                     include_once(__DIR__ . "/../controllers/employee.controller.php");
                     $employeeController = new EmployeeController();
@@ -39,6 +45,15 @@
                 case "updatePassword":
                     $userController->updatePassword();
                     break;
+
+                case "login":
+                    $userController->loginUser();
+                    break;
+
+                case "recoverPassword":
+                        $userController->recoverPassword();
+                    break;
+
             }
         }
     }
