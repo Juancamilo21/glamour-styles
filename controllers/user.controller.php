@@ -200,12 +200,14 @@ class UserController implements BaseModelControllers {
         $row = $result->fetch_assoc();
 
         if (!isset($row["time_token"])) {
-            http_response_code(400);
+            http_response_code(404);
+            echo json_encode(array("message" => "El recurso solicitado no existe"));
             return;
         }
-
+        
         if (!$this->verifyToken($result, $row["time_token"])) {
-            http_response_code(400);
+            http_response_code(404);
+            echo json_encode(array("message" => "El recurso solicitado no existe"));
             return;
         }
 

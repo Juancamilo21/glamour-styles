@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glamour Style - Login</title>
+    <link rel="shortcut icon" href="./public/assets/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../../public/styles/main.css">
     <link rel="stylesheet" href="../../public/styles/form.login.css">
 </head>

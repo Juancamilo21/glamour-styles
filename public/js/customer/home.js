@@ -33,7 +33,7 @@ function showServicesCard(data) {
     buttonSelected.innerText = "Seleccionar";
 
     buttonSelected.addEventListener("click", (e) => {
-      location.href = `./customer.stylist.php?service=${row.id_service}`;
+      location.href = `./customer.stylist.php?srv=${row.id_service}`;
     });
 
     containerContent.append(h4);

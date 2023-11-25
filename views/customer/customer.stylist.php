@@ -18,10 +18,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glamour Styles - Stylists</title>
+    <link rel="shortcut icon" href="../../public/assets/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../../public/styles/main.css">
     <link rel="stylesheet" href="../../public/styles/header.css">
     <link rel="stylesheet" href="../../public/styles/footer.css">
     <link rel="stylesheet" href="../../public/styles/stylist.css">
+    <link rel="stylesheet" href="../../public/styles/sweet.alert.css">
     <script defer src="../../public/js/main.js"></script>
 </head>
 
@@ -99,7 +101,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../public/js/alerts.js"></script>
-    <script src="../../public/js/format.js"></script>
     <script src="../../public/js/customer/employees.js"></script>
 
 </body>

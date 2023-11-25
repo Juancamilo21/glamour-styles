@@ -1,0 +1,60 @@
+#calendar {
+    background-color: var(--color-containers);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+#calendar .fc-day {
+    cursor: pointer;
+}
+
+#calendar .alert {
+    text-align: center;
+}
+
+#calendar p {
+    font-size: var(--font-size-menu);
+}
+
+#calendar img {
+    width: 50%;
+    object-fit: cover;
+}
+
+#calendar .article-info {
+    border-bottom: 0.1rem solid #999;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    width: 100%;
+}
+
+#calendar .article-info .box-title {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#calendar .article-info .box-title h4 {
+    color: var(--color-white);
+    font-size: var(--font-size-menu);
+}
+
+#calendar .article-info .box-content {
+    padding: 1rem;
+}
+
+#calendar .article-info .box-content p {
+    font-size: var(--font-size-menu);
+    margin-bottom: 1rem;
+}
+
+#calendar .laquo {
+    font-size: var(--font-size-menu);
+    padding: 0.5rem;
+    
+}
+
+@media screen and (max-width: 430px) {
+    #calendar .article-info .box-content p {
+        font-size: 1.1rem;
+    }
+}

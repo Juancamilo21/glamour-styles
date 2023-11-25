@@ -7,10 +7,10 @@ buttonModal.addEventListener("click", (e) => {
       <input type='text' name='serviceName' id='serviceName' required class='input'>
           
       <label for='price'>Precio</label>
-      <input type='number' name='price' id='price' required>
+      <input type='number' name='price' class='input' id='price' required>
 
       <label for='imageService'>Imágen</label>
-      <input type='file' name='imageService' id='image' required accept='image/*'>
+      <input type='file' name='imageService' class='input' id='image' required accept='image/*'>
   </form>
   `;
   alertForm(formRegister, "Registrar", registerService, showServices);
@@ -104,7 +104,7 @@ function loadInputsFormUpdate(data) {
       <input type='text' name='serviceName' id='serviceName' required class='input' value='${data.service_name}'>
             
       <label for='price'>Precio</label>
-      <input type='number' name='price' id='price' required value='${data.price}'>
+      <input type='number' name='price' class='input' id='price' required value='${data.price}'>
     </form>
   `;
   alertForm(formUpdate, "Actualizar", updateService, showServices);

@@ -7,28 +7,28 @@ buttonModal.addEventListener("click", async (e) => {
       <div class='box-form'>
         <form id='form' action='' method='post'>
             <label for='names'>Nombres</label>
-            <input type='text' name='names' id='names' required>
+            <input type='text' name='names' class='input' id='names' required>
                 
             <label for='lastnames'>Apellidos</label>
-            <input type='text' name='lastnames' id='lastnames' required>
+            <input type='text' name='lastnames' class='input' id='lastnames' required>
       
             <label for='age'>Edad</label>
-            <input type='number' name='age' id='age' required>
+            <input type='number' name='age' class='input' id='age' required>
 
             <label for='dci'>Cedula</label>
-            <input type='number' name='dci' id='dci' required>
+            <input type='number' name='dci' class='input' id='dci' required>
 
             <label for='phoneNumber'>Telefono</label>
-            <input type='number' name='phoneNumber' id='phone' required>
+            <input type='number' name='phoneNumber' class='input' id='phone' required>
 
             <label for='address'>Dirección</label>
-            <input type='text' name='address' id='address' required>
+            <input type='text' name='address' class='input' id='address' required>
 
             <label for='Salary'>Salario</label>
-            <input type='number' name='salary' id='salary' required>
+            <input type='number' name='salary' class='input' id='salary' required>
 
             <label for='email'>Email</label>
-            <input type='email' name='email' id='email' required>
+            <input type='email' name='email' class='input' id='email' required>
 
             <label for='services'>Selecciona el servicio que realiza</label>
             ${selectServices.outerHTML}
@@ -138,15 +138,19 @@ function showEmployeTable(data) {
 
     actionButtonDelete(row, buttonDelete);
 
-    const buttoCalendar = document.createElement("button");
-    buttoCalendar.className = "button-events";
-    buttoCalendar.id = "button-events-calendar";
-    buttoCalendar.innerHTML = "<i class='bi bi-calendar-week-fill'></i>";
-    
+    const buttonCalendar = document.createElement("button");
+    buttonCalendar.className = "button-events";
+    buttonCalendar.id = "button-events-calendar";
+    buttonCalendar.innerHTML = "<i class='bi bi-calendar-week-fill'></i>";
+    buttonCalendar.addEventListener("click", (e) => {
+      e.preventDefault();
+      location.href = `./admin.stylistSchedules.php?srv=${row.service_id}&st=${row.id_user}`;
+    });
+
     const tdButton = document.createElement("td");
     tdButton.append(buttonEdit);
     tdButton.append(buttonDetails);
-    tdButton.append(buttoCalendar);
+    tdButton.append(buttonCalendar);
     tdButton.append(buttonDelete);
 
     tr.append(tdNum);
@@ -170,8 +174,10 @@ function actionButtonDetails(button, id) {
 
 async function getEmployee(id) {
   try {
-    const response = await fetch(`../../routes/user.router.php?route=employee&roleId=3&idUser=${id}`);
-    if(!response.ok) throw new Error("Ha ocurrido un error inesperado");
+    const response = await fetch(
+      `../../routes/user.router.php?route=employee&roleId=3&idUser=${id}`
+    );
+    if (!response.ok) throw new Error("Ha ocurrido un error inesperado");
     const row = await response.json();
     let html = `
     <div class='box-datails'>
@@ -187,9 +193,7 @@ async function getEmployee(id) {
     </div>
     `;
     detailsAlert(html);
-  } catch (error) {
-    
-  }
+  } catch (error) {}
 }
 
 function loadInputsForm(row) {
@@ -199,28 +203,28 @@ function loadInputsForm(row) {
           <input type='hidden' name='id' id='id' required value='${row.id_user}'>
 
           <label for='names'>Nombres</label>
-          <input type='text' name='names' id='names' required value='${row.names}'>
+          <input type='text' name='names' class='input' id='names' required value='${row.names}'>
               
           <label for='lastnames'>Apellidos</label>
-          <input type='text' name='lastnames' id='lastnames' required value='${row.lastnames}'>
+          <input type='text' name='lastnames' class='input' id='lastnames' required value='${row.lastnames}'>
     
           <label for='age'>Edad</label>
-          <input type='number' name='age' id='age' required value='${row.age}'>
+          <input type='number' name='age' class='input' id='age' required value='${row.age}'>
 
           <label for='dci'>Cedula</label>
-          <input type='number' name='dci' id='dci' required value='${row.dci}'>
+          <input type='number' name='dci' class='input' id='dci' required value='${row.dci}'>
 
           <label for='phoneNumber'>Telefono</label>
-          <input type='number' name='phoneNumber' id='phone' required value='${row.phone_number}'>
+          <input type='number' name='phoneNumber' class='input' id='phone' required value='${row.phone_number}'>
 
           <label for='address'>Dirección</label>
-          <input type='text' name='address' id='address' required value='${row.address}'>
+          <input type='text' name='address' class='input' id='address' required value='${row.address}'>
 
           <label for='Salary'>Salario</label>
-          <input type='number' name='salary' id='salary' required value='${row.salary}'>
+          <input type='number' name='salary' class='input' id='salary' required value='${row.salary}'>
 
           <label for='email'>Email</label>
-          <input type='email' name='email' id='email' readonly required value='${row.email}'>
+          <input type='email' name='email' class='input' id='email' readonly required value='${row.email}'>
       </form>
     </div>
       `;

@@ -17,19 +17,15 @@ if ($response) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glamour Styles - Appointments</title>
+    <link rel="shortcut icon" href="../../public/assets/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../../public/styles/main.css">
     <link rel="stylesheet" href="../../public/styles/header.css">
     <link rel="stylesheet" href="../../public/styles/footer.css">
     <link rel="stylesheet" href="../../public/styles/appointment.css">
+    <link rel="stylesheet" href="../../public/styles/sweet.alert.css">
+    <link rel="stylesheet" href="../../public/styles/calendar.css">
     <script defer src="../../public/js/main.js"></script>
 
-    <style>
-        #calendar {
-            background-color: var(--color-containers);
-            padding: 1rem;
-            border-radius: 0.5rem;
-        }
-    </style>
 </head>
 
 <body>
@@ -83,57 +79,7 @@ if ($response) {
     </header>
 
     <main class="main">
-
         <div id="calendar"></div>
-
-        <!-- 
-        <section class="section-title">
-            <h1>Citas por confirmar</h1>
-        </section>
-    
-        <section class="section-appoint">
-            <article class="article-info-appoint">
-                <div class="container-info">
-                    <img src="../../public/assets/pestañas.jpg" alt="photo">
-                    <div class="info-appoint">
-                        <h4>Definición de pestañas</h4>
-                        <div class="box-buttons">
-                            <a href="#" style="background-color: #dc3545;">Eliminar</a>
-                            <a href="#" style="background-color: #6c757d;">Detalles</a>
-                            <a href="#">Reservar</a>
-                        </div>
-                    </div>
-                </div>
-                <p>Precio: $ 35.000</p>
-            </article>
-    
-            <article class="article-info-appoint">
-                <div class="container-info">
-                    <img src="../../public/assets/pestañas.jpg" alt="photo">
-                    <div class="info-appoint">
-                        <h4>Definición de pestañas</h4>
-                        <div class="box-buttons">
-                            <a href="#" style="background-color: #dc3545;">Eliminar</a>
-                            <a href="#" style="background-color: #6c757d;">Detalles</a>
-                            <a href="#">Reservar</a>
-                        </div>
-                    </div>
-                </div>
-                <p>Precio: $ 35.000</p>
-            </article>
-        </section>
-    
-        <section class="section-total">
-            <div class="container-total">
-                <p>Total: $70.000</p>
-                <a href="#">Reservar todo</a>
-            </div>
-        </section>
-
-
-    -->
-
-
     </main>
 
 
@@ -154,16 +100,11 @@ if ($response) {
     </footer>
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let calendarEl = document.getElementById('calendar');
-            let calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                locale: "es",
-            });
-            calendar.render();
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../public/js/alerts.js"></script>
+    <script src="../../public/js/schedules/schedule.js"></script>
+    <script src="../../public/js/format.js"></script>
+    <script src="../../public/js/customer/customer.schedules.js"></script>
 </body>
 
 </html>

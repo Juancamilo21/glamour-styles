@@ -67,6 +67,12 @@
                     $userController->getById();
                     break;
 
+                case "idEmployee":
+                    include_once(__DIR__ . "/../controllers/employee.controller.php");
+                    $employeeController = new EmployeeController();
+                    $employeeController->findEmployeeById();
+                    break;
+
                 case "role":
                     $result = $userController->findByRole($_GET["roleId"]);
                     $data = array();

@@ -22,13 +22,12 @@
             $this->serviceModel->setIdService($_GET["id"]);
             $result = $this->serviceModel->findById();
 
-            if ($result) {
+            if ($result->num_rows > 0) {
                 $data = $result->fetch_assoc();
-                http_response_code(200);
                 echo json_encode($data);
             } else {
-                http_response_code(500);
-                echo json_encode(array("message" => "Error al realizar la operación", "status" => 500));
+                http_response_code(404);
+                echo json_encode(array("message" => "Error al realizar la operación"));
             }
             
         }
@@ -55,8 +54,7 @@
 
             $result = $this->serviceModel->create();
             if ($result) {
-                http_response_code(200);
-                echo json_encode(array("message" => "Registro exitoso", "status" => 200));
+                echo json_encode(array("message" => "Registro exitoso"));
             } else {
                 http_response_code(500);
                 echo json_encode(array("message" => "Error al crear el servicio", "status" => 500));
@@ -71,25 +69,17 @@
                 return;
             }
 
-            /*$image = $_FILES["image"];
-            $imageTmp = $_FILES["image"]["tmp_name"];
-            $imageName = $_FILES["image"]["name"];
-            $imageError = $_FILES["image"]["error"];
-            
-            $imagePath = pathUploadImage($image, $imageTmp, $imageName, $imageError);*/
             
             $this->serviceModel->setIdService($_POST["id"]);
             $this->serviceModel->setServiceName($_POST["serviceName"]);
             $this->serviceModel->setPrice($_POST["price"]);
-            //$this->serviceModel->setImagePath($imagePath);
             $result = $this->serviceModel->update();
 
             if ($result) {
-                http_response_code(200);
-                echo json_encode(array("message" => "Servicio actualizado exitosamente", "status" => 200));
+                echo json_encode(array("message" => "Servicio actualizado exitosamente"));
             } else {
                 http_response_code(500);
-                echo json_encode(array("message" => "Error al actualizar la operación", "status" => 500));
+                echo json_encode(array("message" => "Error al actualizar la operación"));
             }
         }
 
@@ -100,10 +90,10 @@
             $result = $this->serviceModel->delete();
 
             if ($result) {
-                echo json_encode(array("message" => "Servicio eliminado exitosamente", "status" => 200));
+                echo json_encode(array("message" => "Servicio eliminado exitosamente"));
             } else {
                 http_response_code(500);
-                echo json_encode(array("message" => "Error al realizar la operación", "status" => 500));
+                echo json_encode(array("message" => "Error al realizar la operación"));
             }
         }
 

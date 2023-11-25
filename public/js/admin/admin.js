@@ -6,28 +6,28 @@ buttonModal.addEventListener("click", (e) => {
     <div class='box-form'>
       <form id='form' action='' method='post'>
           <label for='names'>Nombres</label>
-          <input type='text' name='names' id='names' required>
+          <input type='text' name='names' class='input' id='names' required>
               
           <label for='lastnames'>Apellidos</label>
-          <input type='text' name='lastnames' id='lastnames' required>
+          <input type='text' name='lastnames' class='input' id='lastnames' required>
     
           <label for='age'>Edad</label>
-          <input type='number' name='age' id='age' required>
+          <input type='number' name='age' class='input' id='age' required>
 
           <label for='dci'>Cedula</label>
-          <input type='number' name='dci' id='dci' required>
+          <input type='number' name='dci' class='input' id='dci' required>
 
           <label for='phoneNumber'>Telefono</label>
-          <input type='number' name='phoneNumber' id='phone' required>
+          <input type='number' name='phoneNumber' class='input' id='phone' required>
 
           <label for='address'>Dirección</label>
-          <input type='text' name='address' id='address' required>
+          <input type='text' name='address' class='input' id='address' required>
 
           <label for='email'>Email</label>
-          <input type='email' name='email' id='email' required>
+          <input type='email' name='email' class='input' id='email' required>
 
           <label for='password'>Contraseña</label>
-          <input type='password' name='password' id='password' required>
+          <input type='password' name='password' class='input' id='password' required>
       </form>
     </div>
       `;
@@ -152,25 +152,25 @@ function loadInputsForm(row) {
           <input type='hidden' name='id' id='id' required value='${row.id_user}'>
 
           <label for='names'>Nombres</label>
-          <input type='text' name='names' id='names' required value='${row.names}'>
+          <input type='text' name='names' class='input' id='names' required value='${row.names}'>
               
           <label for='lastnames'>Apellidos</label>
-          <input type='text' name='lastnames' id='lastnames' required value='${row.lastnames}'>
+          <input type='text' name='lastnames' class='input' id='lastnames' required value='${row.lastnames}'>
     
           <label for='age'>Edad</label>
-          <input type='number' name='age' id='age' required value='${row.age}'>
+          <input type='number' name='age' class='input' id='age' required value='${row.age}'>
 
           <label for='dci'>Cedula</label>
-          <input type='number' name='dci' id='dci' required value='${row.dci}'>
+          <input type='number' name='dci' class='input' id='dci' required value='${row.dci}'>
 
           <label for='phoneNumber'>Telefono</label>
-          <input type='number' name='phoneNumber' id='phone' required value='${row.phone_number}'>
+          <input type='number' name='phoneNumber' class='input' id='phone' required value='${row.phone_number}'>
 
           <label for='address'>Dirección</label>
-          <input type='text' name='address' id='address' required value='${row.address}'>
+          <input type='text' name='address' class='input' id='address' required value='${row.address}'>
 
           <label for='email'>Email</label>
-          <input type='email' name='email' id='email' readonly required value='${row.email}'>
+          <input type='email' name='email' class='input' id='email' readonly required value='${row.email}'>
       </form>
     </div>
       `;

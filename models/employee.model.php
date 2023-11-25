@@ -30,6 +30,17 @@
             return $result;
         }
 
+        public function findEmployeeById() {
+            $idEmployee = $this->getIdUser();
+
+            $sql = "SELECT * FROM users WHERE id_user = $idEmployee AND role_id = 3";
+            $connection = $this->databaseConnecion->connection();
+
+            $result = $connection->query($sql);
+
+            return $result;
+        }
+
         public function getEmployeeService() {
             $idService = $this->serviceId;
             $sql = "SELECT * FROM users WHERE service_id = $idService";

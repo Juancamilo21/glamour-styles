@@ -48,11 +48,12 @@ async function verifyTokenUser(token) {
     const response = await fetch(
       `../../routes/user.router.php?route=verifyToken&token=${token}`
     );
+    const data = await response.json();
     if (!response.ok) {
-      location.href = "../../index.php";
+      messageError(data.message, response.status)
+      //location.href = "../../index.php";
       return;
     }
-    const data = await response.json();
     document.getElementById("uid").value = data.id_user;
     document.getElementById("token").value = data.token;
   } catch (error) {
@@ -60,13 +61,19 @@ async function verifyTokenUser(token) {
   }
 }
 
+function messageError(message, status) {
+  document.querySelector(".container-form").innerHTML = `
+   <div style='text-align: center'>
+      <h1 style='margin: 2rem;'>${status} Not Found</h1>
+      <h2 style='margin-bottom: 2rem;'>${message}</h2>
+      <a href='../../index.php' style='padding: 0.8rem; background-color: var(--primary-color); color: var(--color-white); font-size: var(--font-size-menu); font-weight: 600; border-radius: 0.5rem'>Iniciar Sesión</a>
+   </div>
+  `
+}
+
 document.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault();
   const params = new URLSearchParams(location.search);
   let token = params.get("token");
-  if (!token) {
-    location.href = "../../index.php";
-    return;
-  }
   verifyTokenUser(token);
 });

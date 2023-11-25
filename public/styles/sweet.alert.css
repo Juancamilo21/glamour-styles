@@ -17,6 +17,24 @@
     width: 100%;
 }
 
+.custom-alert-container .box-datails .detail-service {
+    padding: 1rem;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 2.5rem;
+}
+
+.custom-alert-container .box-datails .detail-service img {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.custom-alert-container .box-datails .detail-service h4 {
+    color: var(--primary-color);
+}
+
 .custom-alert-container .box-datails span {
     font-weight: 600;
     color: var(--color-black);
@@ -32,7 +50,7 @@
     margin-bottom: 0.2rem;
 }
 
-.custom-alert-container input,
+.custom-alert-container .input,
 .custom-alert-container select {
     width: 100%;
     padding: 1rem;
@@ -41,4 +59,11 @@
     border-radius: 0.5rem;
     font-size: var(--font-size);
     outline: none;
+}
+
+.custom-alert-container .color {
+    border: none;
+    border-radius: 50%;
+    width: 100%;
+    height: 4.5rem;
 }

@@ -230,7 +230,7 @@
         public function updatedPassword() {
             $idUser = $this->idUser;
             $newPassword = $this->password;
-            $sql = "UPDATE users SET password = '$newPassword' WHERE id_user = $idUser";
+            $sql = "UPDATE users SET password = '$newPassword', token = NULL, time_token = NULL WHERE id_user = $idUser";
 
             $connection = $this->databaseConnecion->connection();
             $result = $connection->query($sql);

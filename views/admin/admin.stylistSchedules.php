@@ -16,12 +16,15 @@ if ($response) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glamour Styles - Administradores</title>
+    <title>Glamour Styles - Bookings</title>
     <link rel="shortcut icon" href="../../public/assets/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../../public/styles/main.css">
     <link rel="stylesheet" href="../../public/styles/header.css">
-    <link rel="stylesheet" href="../../public/styles/dashboard.css">
+    <link rel="stylesheet" href="../../public/styles/footer.css">
+    <link rel="stylesheet" href="../../public/styles/sweet.alert.css">
+    <link rel="stylesheet" href="../../public/styles/calendar.css">
     <script defer src="../../public/js/main.js"></script>
+
 </head>
 
 <body>
@@ -34,13 +37,13 @@ if ($response) {
         </a>
         <nav class="navbar">
             <ul class="menu">
-                <li class="current-item-page">
-                    <a href="admin.home.php" class="current-page">Inicio</a>
+                <li>
+                    <a href="admin.home.php">Inicio</a>
                 </li>
                 <li>
                     <a href="admin.services.php">Servicios</a>
                 </li>
-                <li>
+                <li class="current-item-page">
                     <a href="admin.stylist.php">Estilistas</a>
                 </li>
                 <li>
@@ -84,31 +87,33 @@ if ($response) {
     </header>
 
     <main class="main">
-
-        <section class="section-dashboard">
-            <div class="container-card">
-                <article class="card">
-                    <div class="box-number" id="box-stylist">
-                        <h4>5</h4>
-                    </div>
-                    <p>Estilistas</p>
-                </article>
-                <article class="card">
-                    <div class="box-number" id="box-services">
-                        <h4>5</h4>
-                    </div>
-                    <p>Servicios</p>
-                </article>
-                <article class="card">
-                    <div class="box-number" id="box-appoint">
-                        <h4>5</h4>
-                    </div>
-                    <p>Citas Realizadas</p>
-                </article>
-            </div>
-        </section>
-
+        <h2 class="title" style="margin-bottom: 2.5rem;"></h2>
+        <div id="calendar"></div>
     </main>
+
+    <footer class="footer">
+        <div class="box-footer-logo">
+            <h4 class="text-logo">Glamour Styles</h4>
+        </div>
+        <div class="box-footer-info">
+            <p>&copy; Derechos reservados - 2023</p>
+        </div>
+        <div class="box-footer-media">
+            <a href="https://Wa.me/+573022294543" target="_blank"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://www.facebook.com/?locale=es_LA" target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.tiktok.com/es/" target="_blank"><i class="bi bi-tiktok"></i></a>
+        </div>
+
+    </footer>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../public/js/alerts.js"></script>
+    <script src="../../public/js/schedules/schedule.js"></script>
+    <script src="../../public/js/format.js"></script>
+    <script src="../../public/js/admin/employee.schedules.js"></script>
+
 
 </body>
 
