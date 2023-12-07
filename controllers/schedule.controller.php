@@ -206,13 +206,7 @@ class ScheduleController implements BaseModelControllers
         $this->scheduleModel->setEndTime($_POST["endTime"]);
 
 
-        if (!$this->scheduleModel->verifyScheduleEmployee() && $this->scheduleModel->verifyScheduleCustomer()) {
-            http_response_code(400);
-            echo json_encode(array("message" => "Este horario no está disponible, trate con otro"));
-            return;
-        }
-
-        if ($this->scheduleModel->verifyScheduleEmployee() && !$this->scheduleModel->verifyScheduleCustomer()) {
+        if (!$this->scheduleModel->verifyScheduleEmployee() && !$this->scheduleModel->verifyScheduleCustomer()) {
             http_response_code(400);
             echo json_encode(array("message" => "Este horario no está disponible, trate con otro"));
             return;
