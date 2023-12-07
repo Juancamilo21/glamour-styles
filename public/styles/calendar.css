@@ -1,6 +1,6 @@
 #calendar {
     background-color: var(--color-containers);
-    padding: 1rem;
+    padding: 3.5rem;
     border-radius: 0.5rem;
 }
 
@@ -47,13 +47,63 @@
     margin-bottom: 1rem;
 }
 
+#calendar button {
+    margin-left: 1rem;
+    padding: 0.8rem;
+    cursor: pointer;
+}
+
+.button {
+    border: none;
+    font-size: var(--font-size-menu);
+    border-radius: 0.5rem;
+    font-weight: 500;
+    color: var(--color-white);
+}
+
+.box-checked {
+    display: flex;
+    align-items: center;
+}
+
+.checked {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    margin: 0 0.5rem 0 1rem;
+    display: inline-block;
+}
+
+.checked::before {
+    content: '\2713';
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #070f07;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box-check {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-menu);
+    margin-left: 1rem;
+}
+
+
 #calendar .laquo {
     font-size: var(--font-size-menu);
     padding: 0.5rem;
-    
 }
 
 @media screen and (max-width: 430px) {
+    #calendar {
+        padding: 1rem;
+    }
+
     #calendar .article-info .box-content p {
         font-size: 1.1rem;
     }

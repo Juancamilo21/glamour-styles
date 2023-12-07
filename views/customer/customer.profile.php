@@ -1,13 +1,13 @@
 <?php include_once(__DIR__ . "/../../controllers/user.controller.php");
-    
-    $userController = new UserController();
-    $userController->header();
-    
-    $response = $userController->findById();
-    $row = array();
-    if($response) {
-        $row = $response->fetch_assoc();
-    }
+
+$userController = new UserController();
+$userController->header();
+
+$response = $userController->findById();
+$row = array();
+if ($response) {
+    $row = $response->fetch_assoc();
+}
 ?>
 
 <!DOCTYPE html>
@@ -46,12 +46,12 @@
                     <a href="#">
                         <article class="card-content">
                             <img class="profile-photo" src="../../upload/default.png" alt="profile-photo">
-                            <p> 
-                                <?php 
-                                    if (isset($row["names"])) {
-                                        echo $row["names"];
-                                    }
-                                ?> 
+                            <p>
+                                <?php
+                                if (isset($row["names"])) {
+                                    echo $row["names"];
+                                }
+                                ?>
                                 +
                             </p>
                         </article>
@@ -82,15 +82,16 @@
             <article class="card-info">
                 <img src="../../upload/default.png" alt="photo">
                 <h4>
-                    <?php 
-                        if (isset($row["names"]) && isset($row["lastnames"])) {
-                            echo $row["names"] . " " . $row["lastnames"];
-                        }
+                    <?php
+                    if (isset($row["names"]) && isset($row["lastnames"])) {
+                        echo $row["names"] . " " . $row["lastnames"];
+                    }
                     ?>
                 </h4>
             </article>
             <div class="card-options">
-                <button type="button" class="button-edit" id="button-edit" data-id="<?php if(isset($row["id_user"])) echo $row["id_user"] ?>"><i class="bi bi-pencil-fill"></i> Editar datos del perfil</button>
+                <button type="button" class="button-edit" id="button-edit" data-id="<?php if (isset($row["id_user"])) echo $row["id_user"] ?>"><i class="bi bi-pencil-fill"></i> Editar datos del perfil</button>
+                <button type="button" style="background-color: #0275d8;" class="button-edit" id="button-lock" data-id="<?php if (isset($row["id_user"])) echo $row["id_user"] ?>"><i class="bi bi-lock-fill"></i> Cambiar contraseña</button>
 
                 <a href="../../controllers/logOut.php" style="background-color: var(--color-danger);"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a>
             </div>

@@ -104,7 +104,8 @@ if ($response) {
                 </p>
             </article>
             <div class="card-options">
-            <button type="button" class="button-edit" id="button-edit" data-id="<?php if(isset($row["id_user"])) echo $row["id_user"] ?>"><i class="bi bi-pencil-fill"></i> Editar datos del perfil</button>
+                <button type="button" class="button-edit" id="button-edit" data-id="<?php if (isset($row["id_user"])) echo $row["id_user"] ?>"><i class="bi bi-pencil-fill"></i> Editar datos del perfil</button>
+                <button type="button" style="background-color: #0275d8;" class="button-edit" id="button-lock" data-id="<?php if (isset($row["id_user"])) echo $row["id_user"] ?>"><i class="bi bi-lock-fill"></i> Cambiar contraseña</button>
                 <a href="../../controllers/logOut.php" style="background-color: var(--color-danger);"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a>
             </div>
         </section>

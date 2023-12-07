@@ -8,15 +8,18 @@ include_once(__DIR__ . "/PHPMailer.php");
 include_once(__DIR__ . "/SMTP.php");
 include_once(__DIR__ . "/Exception.php");
 
-class EmailSender {
+class EmailSender
+{
 
     private $mail;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->mail = new PHPMailer(true);
     }
 
-    public function sendEmail($emailAddress, $userNames, $token) {
+    public function sendEmail($emailAddress, $userNames, $token)
+    {
 
         try {
             //$this->mail->SMTPDebug = SMTP::DEBUG_SERVER;

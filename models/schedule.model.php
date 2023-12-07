@@ -14,6 +14,7 @@ class ScheduleModel implements BaseModelControllers {
     private $dateSchedules;
     private $startTime;
     private $endTime;
+    private $attendance;
 
     protected $databaseConnecion;
 
@@ -92,6 +93,14 @@ class ScheduleModel implements BaseModelControllers {
     public function setEndTime($endTime) {
         $this->endTime = $endTime;
     }
+    
+    public function setAttendance($attendance) {
+        $this->attendance = $attendance;
+    }
+
+    public function getAttendace() {
+        return $this->attendance;
+    }
 
     public function findAll() {
     }
@@ -124,7 +133,7 @@ class ScheduleModel implements BaseModelControllers {
         $employeeId = $this->employeeId;
         $serviceId = $this->serviceId;
         
-        $sql = "SELECT sc.*, employee.names, employee.lastnames 
+        $sql = "SELECT DISTINCT sc.*, employee.names, employee.lastnames 
         FROM schedules sc 
         INNER JOIN users employee ON sc.employee_id = employee.id_user
         INNER JOIN users emp ON sc.service_id = emp.service_id
@@ -156,7 +165,7 @@ class ScheduleModel implements BaseModelControllers {
         $serviceId = $this->serviceId;
         $date = $this->dateSchedules;
 
-        $sql = "SELECT
+        $sql = "SELECT DISTINCT
         sc.*,
         employee.names AS employee_names,
         employee.lastnames AS employee_lastnames,
@@ -225,12 +234,49 @@ class ScheduleModel implements BaseModelControllers {
     }
 
     public function update() {
+        $idSchedule = $this->idSchedule;
+        $title = $this->title;
+        $color = $this->color;
+        $dateSchedules = $this->dateSchedules;
+        $startTime = $this->startTime;
+        $endTime = $this->endTime;
+        
+        $sql = "UPDATE schedules SET title = '$title', color = '$color', date_schedules = '$dateSchedules', start_time = '$startTime', end_time = '$endTime' WHERE id_schedules = $idSchedule";
+
+        $connection = $this->databaseConnecion->connection();
+        $result = $connection->query($sql);
+
+        $connection->close();
+
+        return $result;
+    }
+
+    public function updateAttendance() {
+        $idSchedule = $this->idSchedule;
+        $attendance = $this->attendance;
+        $sql = "UPDATE schedules SET attendance = $attendance WHERE id_schedules = $idSchedule";
+
+        $connection = $this->databaseConnecion->connection();
+        $result = $connection->query($sql);
+
+        $connection->close();
+
+        return $result;
     }
 
     public function delete() {
+        $idSchedule = $this->idSchedule;
+        $sql = "DELETE FROM schedules WHERE id_schedules = $idSchedule";
+
+        $connection = $this->databaseConnecion->connection();
+        $result = $connection->query($sql);
+
+        $connection->close();
+
+        return $result;
     }
 
-    public function verifySchedule() {
+    public function verifyScheduleEmployee() {
         $employeeId = $this->employeeId;
         $dateSchedules = $this->dateSchedules;
         $startTime = $this->startTime;
@@ -239,6 +285,32 @@ class ScheduleModel implements BaseModelControllers {
         $sql = "SELECT *
         FROM schedules
         WHERE employee_id = $employeeId
+          AND date_schedules = '$dateSchedules'
+          AND (
+            (start_time <= '$startTime' AND end_time > '$startTime')
+            OR (start_time < '$endTime' AND end_time >= '$endTime')
+            OR (start_time >= '$startTime' AND end_time <= '$endTime')
+          )";
+
+          $connection = $this->databaseConnecion->connection();
+          $result = $connection->query($sql);
+
+          $connection->close();
+
+         if ($result->num_rows > 0) return false;
+
+         return true;
+    }
+
+    public function verifyScheduleCustomer() {
+        $customerId = $this->customerId;
+        $dateSchedules = $this->dateSchedules;
+        $startTime = $this->startTime;
+        $endTime = $this->endTime;
+
+        $sql = "SELECT *
+        FROM schedules
+        WHERE customer_id = $customerId
           AND date_schedules = '$dateSchedules'
           AND (
             (start_time <= '$startTime' AND end_time > '$startTime')

@@ -50,8 +50,7 @@ async function verifyTokenUser(token) {
     );
     const data = await response.json();
     if (!response.ok) {
-      messageError(data.message, response.status)
-      //location.href = "../../index.php";
+      messageError(data.message)
       return;
     }
     document.getElementById("uid").value = data.id_user;
@@ -61,12 +60,11 @@ async function verifyTokenUser(token) {
   }
 }
 
-function messageError(message, status) {
+function messageError(message) {
   document.querySelector(".container-form").innerHTML = `
-   <div style='text-align: center'>
-      <h1 style='margin: 2rem;'>${status} Not Found</h1>
+   <div style='text-align: center; margin-top: 4rem'>
       <h2 style='margin-bottom: 2rem;'>${message}</h2>
-      <a href='../../index.php' style='padding: 0.8rem; background-color: var(--primary-color); color: var(--color-white); font-size: var(--font-size-menu); font-weight: 600; border-radius: 0.5rem'>Iniciar Sesión</a>
+      <a href='../../index.php' style='padding: 0.8rem; background-color: var(--primary-color); color: var(--color-white); font-size: var(--font-size-menu); font-weight: 600; border-radius: 0.5rem'>Continuar</a>
    </div>
   `
 }

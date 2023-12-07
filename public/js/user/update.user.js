@@ -1,4 +1,5 @@
 const buttonEdit = document.getElementById("button-edit");
+const buttonLock = document.getElementById("button-lock");
 
 async function getDataUser(id) {
   const response = await fetch(
@@ -77,4 +78,54 @@ buttonEdit.addEventListener("click", async (e) => {
   e.preventDefault();
   let id = buttonEdit.getAttribute("data-id");
   await getDataUser(id);
+});
+
+function loadFormChangePassword(id) {
+  let form = `
+    <form id='form' action='' method='post'>
+        <input type='hidden' name='id' class='input' id='id' required value='${id}'>
+
+        <label for='names'>Nueva contraseña</label>
+        <input type='password' name='password' class='input' id='password' required placeholder='****************'>
+            
+        <label for='lastnames'>Repetir contraseña</label>
+        <input type='password' name='passwordConfirm' class='input' id='passwordConfirm' required placeholder='****************'>
+    </form>
+    `;
+  alertForm(form, "Cambiar contraseña", changePassword, () => {});
+}
+
+async function changePassword() {
+  const formData = new FormData(document.getElementById("form"));
+  if (
+    formData.get("id") === "" ||
+    formData.get("password") === "" ||
+    formData.get("passwordRepeat") === ""
+  ) {
+    Swal.showValidationMessage("Todos los campos son obligatorios");
+    return;
+  }
+
+  if (formData.get("password") !== formData.get("passwordConfirm")) {
+    Swal.showValidationMessage("Las contraseñas no coinciden");
+    return;
+  }
+
+  formData.append("route", "changePassword");
+  const response = await fetch("../../routes/user.router.php", {
+    method: "POST",
+    body: formData,
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    Swal.showValidationMessage(data.message);
+    return;
+  }
+  return data;
+}
+
+buttonLock.addEventListener("click", (e) => {
+  e.preventDefault();
+  let id = buttonLock.getAttribute("data-id");
+  loadFormChangePassword(id);
 });

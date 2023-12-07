@@ -89,19 +89,16 @@ if ($response) {
             <div class="container-card">
                 <article class="card">
                     <div class="box-number" id="box-stylist">
-                        <h4>5</h4>
                     </div>
                     <p>Estilistas</p>
                 </article>
                 <article class="card">
                     <div class="box-number" id="box-services">
-                        <h4>5</h4>
                     </div>
                     <p>Servicios</p>
                 </article>
                 <article class="card">
                     <div class="box-number" id="box-appoint">
-                        <h4>5</h4>
                     </div>
                     <p>Citas Realizadas</p>
                 </article>
@@ -109,6 +106,8 @@ if ($response) {
         </section>
 
     </main>
+
+    <script src="../../public/js/admin/dashboard.js"></script>
 
 </body>
 

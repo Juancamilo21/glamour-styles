@@ -7,7 +7,7 @@ async function showEmployeeService(idService, showDataEmployees) {
     const data = await response.json();
     showDataEmployees(data);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 

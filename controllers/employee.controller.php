@@ -31,7 +31,8 @@ class EmployeeController extends UserController
         }
     }
 
-    public function findEmployeeById() {
+    public function findEmployeeById()
+    {
         if (!isset($_GET["id"])) return;
 
         $this->employeeModel->setIdUser($_GET["id"]);

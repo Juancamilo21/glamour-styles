@@ -51,26 +51,26 @@ async function createSchedule() {
 }
 
 async function showNamesStylist(id) {
-  const response = await fetch(`../../routes/user.router.php?route=idEmployee&id=${id}`);
+  const response = await fetch(
+    `../../routes/user.router.php?route=idEmployee&id=${id}`
+  );
   const data = await response.json();
-  if(!response.ok) {
+  if (!response.ok) {
     document.querySelector(".title").innerHTML = `${data.message}`;
     console.error(data.message);
     return;
   }
-  document.querySelector(".title").innerHTML = `Crea una nueva agenda con <span style='color: var(--primary-color);'>${data.names} ${data.lastnames}</span>`;
+  document.querySelector(
+    ".title"
+  ).innerHTML = `Crea una nueva agenda con <span style='color: var(--primary-color);'>${data.names} ${data.lastnames}</span>`;
 }
 
 async function getCalendarStylist(employeeId, serviceId) {
-  const response = await fetch(`../../routes/schedule.router.php?route=calendarEmployee&employeeId=${employeeId}&serviceId=${serviceId}`);
+  const response = await fetch(
+    `../../routes/schedule.router.php?route=calendarEmployee&employeeId=${employeeId}&serviceId=${serviceId}`
+  );
   const data = await response.json();
-  if(!response.ok) {
-    document.getElementById("calendar").innerHTML = `
-      <div class='alert'>
-        <p>${data.message}</p>
-        <img src='../../public/assets/calendar.png' alt='calendar' />
-      </div>
-    `
+  if (!response.ok) {
     console.error(data.message);
     return [];
   }
@@ -80,8 +80,8 @@ async function getCalendarStylist(employeeId, serviceId) {
       title: event.title,
       start: `${event.date_schedules}T${event.start_time}`,
       end: `${event.date_schedules}T${event.end_time}`,
-      color: event.color
-    }
+      color: event.color,
+    };
   });
   return events;
 }
@@ -92,7 +92,6 @@ async function showDataCalendar() {
   let serviceId = urlParams.get("srv");
   let eventsSchedules = await getCalendarStylist(employeeId, serviceId);
   await showNamesStylist(employeeId);
-  if(!eventsSchedules.length) return;
   let calendarEl = document.getElementById("calendar");
   let calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "dayGridMonth",
@@ -107,10 +106,8 @@ async function showDataCalendar() {
     events: eventsSchedules,
   });
   calendar.render();
-
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
   await showDataCalendar();
 });
-

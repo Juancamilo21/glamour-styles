@@ -4,15 +4,18 @@ include_once(__DIR__ . "/../shared/base.modelController.php");
 include_once(__DIR__ . "/../shared/token.php");
 include_once(__DIR__ . "/../PHPMailer/email.php");
 
-class UserController implements BaseModelControllers {
+class UserController implements BaseModelControllers
+{
 
     private $userModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->userModel = new UserModel();
     }
 
-    public function loginUser() {
+    public function loginUser()
+    {
 
         if (!isset($_POST["email"]) && !isset($_POST["password"])) {
             return;
@@ -25,20 +28,20 @@ class UserController implements BaseModelControllers {
         $row = $this->userModel->loginUser()->fetch_assoc();
 
         if (!isset($row["email"])) {
-            http_response_code(400);
+            http_response_code(401);
             echo json_encode(array("message" => "El email ingresado no está registrado"));
             return;
         }
 
-        if($row["rol"] === "Employee") {
-            http_response_code(400);
+        if ($row["rol"] === "Employee") {
+            http_response_code(401);
             echo json_encode(array("message" => "Este usuario no tiene permisos de acceso"));
             return;
         }
 
         $verifyPasswordHash = $this->verifyPassword($password, $row["password"]);
         if (!$verifyPasswordHash) {
-            http_response_code(400);
+            http_response_code(401);
             echo json_encode(array("message" => "La contraseña ingresada es incorrecta"));
             return;
         }
@@ -50,31 +53,37 @@ class UserController implements BaseModelControllers {
         echo json_encode(array("role" => $row["rol"]));
     }
 
-    public function logOutUser() {
+    public function logOutUser()
+    {
         session_start();
         session_destroy();
         echo "<script>location.href = '../index.php'</script>";
     }
 
-    public function header() {
+    public function header()
+    {
         session_start();
         if (!isset($_SESSION["email"])) {
             header("location: ../../index.php");
         }
     }
 
-    public function hashedPassword($password) {
+    public function hashedPassword($password)
+    {
         return password_hash($password, PASSWORD_DEFAULT, ['cost' => 15]);
     }
 
-    public function verifyPassword($password, $hash) {
+    public function verifyPassword($password, $hash)
+    {
         return password_verify($password, $hash);
     }
 
-    public function findAll() {
+    public function findAll()
+    {
     }
 
-    public function findById() {
+    public function findById()
+    {
         $response = null;
         if (isset($_SESSION["idUser"])) {
             $this->userModel->setIdUser($_SESSION["idUser"]);
@@ -83,7 +92,8 @@ class UserController implements BaseModelControllers {
         return $response;
     }
 
-    public function getById() {
+    public function getById()
+    {
 
         if (!isset($_GET["id"])) return;
 
@@ -94,24 +104,28 @@ class UserController implements BaseModelControllers {
             $data = $result->fetch_assoc();
             echo json_encode($data);
         } else {
-            http_response_code(400);
-            echo json_encode(array("message" => "Error al realizar la operación"));
+            http_response_code(404);
+            echo json_encode(array("message" => "No fue posible obtener los datos"));
         }
     }
 
-    public function findByEmail() {
+    public function findByEmail()
+    {
     }
 
-    public function findByRole($roleId) {
+    public function findByRole($roleId)
+    {
         $this->userModel->setRoleId($roleId);
         $result = $this->userModel->findByRole();
         return $result;
     }
 
-    public function create() {
+    public function create()
+    {
     }
 
-    public function update() {
+    public function update()
+    {
         if (
             !isset($_POST["id"]) && !isset($_POST["names"]) && !isset($_POST["lastnames"]) && !isset($_POST["age"]) && !isset($_POST["address"]) &&
             !isset($_POST["phoneNumber"]) && !isset($_POST["dci"]) && !isset($_POST["email"])
@@ -138,7 +152,8 @@ class UserController implements BaseModelControllers {
         }
     }
 
-    public function delete() {
+    public function delete()
+    {
 
         if (!isset($_GET["id"])) return;
 
@@ -148,14 +163,44 @@ class UserController implements BaseModelControllers {
         if ($result) {
             echo json_encode(array("message" => "Se ha eliminado exitosamente"));
         } else {
-            http_response_code(500);
+            http_response_code(403);
             echo json_encode(array("message" => "Error al realizar la operación"));
         }
     }
 
-    public function updatePassword() {
+    public function changePassword()
+    {
 
-        if (!isset($_POST["password"]) && !isset($_POST["passwordConfirm"]) && !isset($_POST["uid"])
+        if (!isset($_POST["password"]) && !isset($_POST["passwordConfirm"]) && !isset($_POST["id"])) {
+            return;
+        }
+
+        $password = $_POST["password"];
+        $passwordConfirm = $_POST["passwordConfirm"];
+
+        if ($password !== $passwordConfirm) {
+            http_response_code(400);
+            echo json_encode(array("message" => "Las contraseñas no coinciden"));
+            return;
+        }
+
+        $newPassword = $this->hashedPassword($password);
+        $this->userModel->setPassword($newPassword);
+        $this->userModel->setIdUser($_POST["id"]);
+        $res = $this->userModel->updatedPassword();
+        if ($res) {
+            echo json_encode(array("message" => "Contraseña cambiada exitosamente"));
+        } else {
+            http_response_code(400);
+            echo json_encode(array("message" => "No ha posible realizar la operación"));
+        }
+    }
+
+    public function updatePassword()
+    {
+
+        if (
+            !isset($_POST["password"]) && !isset($_POST["passwordConfirm"]) && !isset($_POST["uid"])
             && !isset($_POST["token"])
         ) {
             return;
@@ -178,7 +223,7 @@ class UserController implements BaseModelControllers {
             echo json_encode(array("message" => "No es posible realizar la operación, solicite un nuevo enlace"));
             return;
         }
-        
+
         $newPassword = $this->hashedPassword($password);
         $this->userModel->setPassword($newPassword);
         $this->userModel->setIdUser($_POST["uid"]);
@@ -189,10 +234,10 @@ class UserController implements BaseModelControllers {
             http_response_code(400);
             echo json_encode(array("message" => "No es posible realizar la operación, solicite un nuevo enlace"));
         }
-
     }
 
-    public function findByToken() {
+    public function findByToken()
+    {
         if (!isset($_GET["token"])) return;
 
         $this->userModel->setToken($_GET["token"]);
@@ -201,28 +246,30 @@ class UserController implements BaseModelControllers {
 
         if (!isset($row["time_token"])) {
             http_response_code(404);
-            echo json_encode(array("message" => "El recurso solicitado no existe"));
+            echo json_encode(array("message" => "El recurso solicitado no tiene ningún tipo de consistencia"));
             return;
         }
-        
+
         if (!$this->verifyToken($result, $row["time_token"])) {
             http_response_code(404);
-            echo json_encode(array("message" => "El recurso solicitado no existe"));
+            echo json_encode(array("message" => "El recurso solicitado no tiene ningún tipo de consistencia"));
             return;
         }
 
         echo json_encode($row);
     }
 
-    public function verifyToken($res, $time) {
+    public function verifyToken($res, $time)
+    {
         if ($res->num_rows <= 0) return false;
-        
+
         if (time() > $time) return false;
 
         return true;
     }
 
-    public function recoverPassword() {
+    public function recoverPassword()
+    {
         if (!isset($_POST["email"])) {
             return;
         }
@@ -236,18 +283,18 @@ class UserController implements BaseModelControllers {
             echo json_encode(array("message" => "El email ingresado no está registrado"));
             return;
         }
-        
+
         $row = $result->fetch_assoc();
-        
-        if($row["role_id"] === "3") {
-            http_response_code(400);
-            echo json_encode(array("message" => "Este usuario no tiene permiso de realizar esta acción"));
+
+        if ($row["role_id"] === "3") {
+            http_response_code(401);
+            echo json_encode(array("message" => "Este usuario no tiene permisos de realizar esta acción"));
             return;
         }
-        
+
         $token = generateToken();
         $timeExpire = time() + 1800;
-        
+
         $this->userModel->setIdUser($row["id_user"]);
         $this->userModel->setToken($token);
         $this->userModel->setTimeExpireToken($timeExpire);

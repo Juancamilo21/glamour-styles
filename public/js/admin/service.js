@@ -111,17 +111,20 @@ function loadInputsFormUpdate(data) {
 }
 
 async function deleteService(id) {
-  try {
-    const response = await fetch(
-      `../../routes/service.router.php?route=delete&id=${id}`
-    );
-    if (!response.ok) throw new Error("No se pudo completar la operación");
-    const data = await response.json();
-    successAlert(data.message, () => {});
-    showServices();
-  } catch (error) {
-    errorAlert(error.message);
+  const response = await fetch(
+    `../../routes/service.router.php?route=delete&id=${id}`
+  );
+  if (response.status === 500) {
+    errorAlert("No fue posible realizar esta operación");
+    return;
   }
+  const data = await response.json();
+  if (!response.ok) {
+    warningAlert(data.message, "¡Oops!");
+    return;
+  }
+  successAlert(data.message, "Operación Exitosa", () => {});
+  showServices();
 }
 
 function completeOperationDelete(id) {

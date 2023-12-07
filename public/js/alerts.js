@@ -53,8 +53,8 @@ function detailsAlert(htmlDetails) {
     confirmButtonColor: "var(--primary-color)",
     customClass: {
       container: "custom-alert-container",
-      title: "custom-title"
-    }
+      title: "custom-title",
+    },
   });
 }
 

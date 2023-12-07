@@ -7,31 +7,31 @@ async function showUsers(roleId, showTable) {
 }
 
 async function getUserById(id) {
-  try {
-    const response = await fetch(
-      `../../routes/user.router.php?route=idUser&id=${id}`
-    );
-    if (!response.ok) throw new Error("");
-    return await response.json();
-  } catch (error) {
-    errorAlert(error.message);
+  const response = await fetch(
+    `../../routes/user.router.php?route=idUser&id=${id}`
+  );
+  if (!response.ok) {
+    warningAlert(data.message, "¡Oops!");
+    return;
   }
+  return await response.json();
 }
 
 async function deleteUser(id, roleId, showTable) {
-  try {
-    const response = await fetch(
-      `../../routes/user.router.php?route=delete&id=${id}`
-    );
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(`${data.message}`);
-    }
-    successAlert(data.message, () => {});
-    showUsers(roleId, showTable);
-  } catch (error) {
-    errorAlert(error.message);
+  const response = await fetch(
+    `../../routes/user.router.php?route=delete&id=${id}`
+  );
+  if (response.status === 500) {
+    errorAlert("No fue posible realizar esta operación");
+    return;
   }
+  const data = await response.json();
+  if (!response.ok) {
+    warningAlert(data.message, "¡Oops!");
+    return;
+  }
+  successAlert(data.message, "Operación Exitosa", () => {});
+  await showUsers(roleId, showTable);
 }
 
 async function showUserById(data) {

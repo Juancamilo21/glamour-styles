@@ -21,7 +21,6 @@ if ($response) {
     <link rel="stylesheet" href="../../public/styles/main.css">
     <link rel="stylesheet" href="../../public/styles/header.css">
     <link rel="stylesheet" href="../../public/styles/footer.css">
-    <link rel="stylesheet" href="../../public/styles/appointment.css">
     <link rel="stylesheet" href="../../public/styles/sweet.alert.css">
     <link rel="stylesheet" href="../../public/styles/calendar.css">
     <script defer src="../../public/js/main.js"></script>
