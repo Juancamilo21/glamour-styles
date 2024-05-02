@@ -5,7 +5,7 @@
     align-items: center;
     position: fixed;
     width: 100%;
-    padding: 0 4rem;
+    padding: 0 2rem;
     background-color: var(--color-containers);
     height: 7rem;
     transition: padding .8s ease;
@@ -153,10 +153,6 @@ i {
 /* Estilos para pantallas pequeñas (máximo 900px) */
 @media screen and (max-width: 1080px) {
 
-    .header {
-        padding: 0 1rem
-    }
-
     /* Mostrar el botón de menú */
     .header .button-menu {
         display: block;
@@ -231,8 +227,8 @@ i {
 
 }
 
-@media screen and (min-width: 1366px) {
+/* @media screen and (min-width: 1366px) {
  .header {
     padding: 0 10rem;
  }
-}
+} */

@@ -41,40 +41,17 @@ function showDataEmployees(data) {
       location.href = `customer.stylistSchedules.php?srv=${row.service_id}&st=${row.id_user}`;
     });
 
-    const buttonDetails = document.createElement("button");
-    buttonDetails.className = "button-employee";
-    buttonDetails.id = "button-details";
-    buttonDetails.innerText = "Detalles";
-    buttonDetails.addEventListener("click", (e) => {
-      detailsStylist(row);
-    });
-
     containerName.append(h4);
 
     containerInfo.append(imgDefaultUser);
     containerInfo.append(containerName);
     containerButtons.append(buttonSelected);
-    containerButtons.append(buttonDetails);
 
     articleEmployee.append(containerInfo);
     articleEmployee.append(containerButtons);
 
     sectionEmployee.appendChild(articleEmployee);
   });
-}
-
-function detailsStylist(row) {
-  let html = `
-    <div class='box-datails'>
-        <p><span>Nombres:</span> ${row.names}</p><br>
-        <p><span>Apellidos:</span> ${row.lastnames}</p><br>
-        <p><span>Edad:</span> ${row.age}</p><br>
-        <p><span>Telefono:</span> ${row.phone_number}</p><br>
-        <p><span>Dirección:</span> ${row.address}</p><br>
-        <p><span>Email:</span> ${row.email}</p><br>
-    </div>
-    `;
-  detailsAlert(html);
 }
 
 document.addEventListener("DOMContentLoaded", (e) => {
