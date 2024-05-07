@@ -10,10 +10,10 @@ class DatabaseConnection
 
     public function __construct()
     {
-        $this->dbHost = "localhost";
-        $this->dbUser = "root";
-        $this->dbPassword = "123456";
-        $this->dbName = "glamour_styles_database";
+        $this->dbHost = "";
+        $this->dbUser = "";
+        $this->dbPassword = "";
+        $this->dbName = "";
     }
 
     public function connection()

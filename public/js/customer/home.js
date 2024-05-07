@@ -37,7 +37,7 @@ function showServicesCard(data) {
     });
 
     containerContent.append(h4);
-    containerContent.append(p);
+   containerContent.append(p);
     containerContent.append(buttonSelected);
 
     articleService.append(containerImg);

@@ -43,9 +43,6 @@ class EmailSender
                 <div style='background-color: #BB006F; padding: 15px;'>
                     <h1 style='color: #fff; font-size: 25px; font-weght: bold;'>Hola, $userNames </h1>
                 </div>
-                <div style='text-align: center; border-bottom: 1px solid #EEEEEE;'>
-                    <img style='width: 225px; height: 225px; object-fit: cover;' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYFIR65ZZ-mgyOYYLcH2qdb3RF6Ra1nuVJSJKeox2NloP7BgXeT22MKN7rPUsJD_Zbnfo&usqp=CAU' alt='img-lock'>
-                </div>
                 <div style='padding: 15px;'>
                     <p style='font-size: 14px'>
                         Sr(a). <strong>$userNames</strong>, usted ha solicidato un cambio de contraseña para su cuenta del sitio Glamour Styles.
