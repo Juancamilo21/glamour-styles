@@ -41,8 +41,9 @@ class EmployeeModel extends UserModel
 
         $sql = "SELECT * FROM users WHERE id_user = $idEmployee AND role_id = 3";
         $connection = $this->databaseConnecion->connection();
-
         $result = $connection->query($sql);
+
+        $connection->close();
 
         return $result;
     }

@@ -26,6 +26,10 @@ class CustomerModel extends UserModel
             ($roleId, '$names', '$lastnames', $age, '$address', '$phoneNumber', '$dci', '$email', '$password')";
 
         $connection = $this->databaseConnecion->connection();
-        return $connection->query($sql);
+        $result = $connection->query($sql);
+
+        $connection->close();
+
+        return $result;
     }
 }

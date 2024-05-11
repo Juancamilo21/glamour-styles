@@ -164,7 +164,11 @@ class UserModel implements BaseModelControllers
                     WHERE u.email = '$email'";
 
         $connection = $this->databaseConnecion->connection();
-        return $connection->query($sql);
+        $result = $connection->query($sql);
+
+        $connection->close();
+
+        return $result;
     }
 
     public function findAll()
@@ -175,8 +179,13 @@ class UserModel implements BaseModelControllers
     {
         $idUser = $this->getIdUser();
         $sql = "SELECT * FROM users WHERE id_user = $idUser";
+        
         $connection = $this->databaseConnecion->connection();
-        return $connection->query($sql);
+        $result = $connection->query($sql);
+
+        $connection->close();
+
+        return $result;
     }
 
     public function findByRole()
@@ -198,7 +207,11 @@ class UserModel implements BaseModelControllers
         $sql = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
 
         $connection = $this->databaseConnecion->connection();
-        return $connection->query($sql);
+        $result = $connection->query($sql);
+
+        $connection->close();
+        
+        return $result;
     }
 
     public function findByToken()
