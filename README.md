@@ -6,7 +6,7 @@ Glamour Styles es un sistema para la gestión de turnos en linea. El sistema est
 
 ## Tabla de contenido
 
-- [Introducción](#sistema-de-gestión-turnos)
+- [Introducción](#sistema-para-la-gestión-de-turnos)
 - [Inicio de Sesión, Registro y recuperación de contraseña](#inicio-de-sesión-y-recuperación-de-contraseña)
 - [Agendamiento de turno](#agendamiento-de-turno)
 - [Administración](#administración)
@@ -124,7 +124,7 @@ Aquellos usuarios con este rol pueden realizar diferentes operaciones dentro del
 
 ## Instalación y Tecnologías
 
-Las tecnologías usadas en este proyecto son: PHP, JavaScript, MySQL, HTML, CSS y Apache Server. También se usaron los CDN de librerias de JavaScript como [SweetAlert2](#) para las ventanas de alertas y modales, además, de [FullCalendar](#) para la visualización del calendario.  
+Las tecnologías usadas en este proyecto son: PHP, JavaScript, MySQL, HTML, CSS y Apache Server. También se usaron los CDN de librerias de JavaScript como [SweetAlert2](https://sweetalert2.github.io/) para las ventanas de alertas y modales, además, de [FullCalendar](https://fullcalendar.io/) para la visualización del calendario.  
 
 Para obtener el sistema primero clona o descarga el repositorio
 
@@ -139,4 +139,4 @@ $this->dbUser = "db_user";
 $this->dbPassword = "db_password";
 $this->dbName = "db_name";
 ```
-Ten en cuenta que esto se puede ejecutar localmente o remotamente, solo debes obtener un servidor **Apache** y una base de datos MySQL. Si lo ejecutas localmente debes realizar los pasos siguientes: si estas en un SO basado en UNIX e instalas **Apache2** debes poner el directorio del proyecto en la ruta **/var/www/html** pero si estas en Windows debes instalar un cliente que te proporcione el servidor como puede ser **Xampp o Laragon** u otro de tu preferecia. Pero si lo despliegas remotamente solo sigue las indicaciones del proveedor. 
+Ten en cuenta que esto se puede ejecutar localmente o remotamente, solo debes obtener un servidor **Apache** y una base de datos MySQL. Si lo ejecutas localmente debes realizar los pasos siguientes: si estas en un Linux e instalas **Apache2** debes poner el directorio del proyecto en la ruta **/var/www/html** pero si estas en Windows debes instalar un cliente que te proporcione el servidor como puede ser [Xampp](https://www.apachefriends.org/es/index.html) o [Laragon](https://laragon.org/download/index.html) u otro de tu preferecia. Pero si lo despliegas remotamente solo sigue las indicaciones del proveedor. 
