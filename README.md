@@ -1,4 +1,4 @@
-# Sistema para la Gestión de Turnos
+# Sistema de gestión de turnos
 
 ## Introducción
 
